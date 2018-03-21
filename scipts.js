@@ -1362,7 +1362,8 @@ return date.toLocaleString("ru", options);
 formatDate(d);
 */
 
-// Относительное форматирование даты не решено
+// Относительное форматирование даты
+// todo
 
 // Замыкание
 // Локальные переменные для объекта
@@ -2057,8 +2058,9 @@ obj.join = [].join;
 alert( obj.join(';') ); // "A;Б;В"
 */
 
-// Одалживание метода c call к произвольному массиву!!! Не решено
+// Одалживание метода c call к произвольному массиву!!! 
 // вариант работает только с массивом а должен с объектом
+// todo
 /*
 var obj = ['a', 'б', 'в'];
 
@@ -3057,7 +3059,9 @@ console.log(sumArgs(1, 2, 3));
 
 
                             // ООП в функциональном стиле
-/*                            
+
+// Добавить метод и свойство кофеварке stop
+/*
 function CoffeeMachine(power) {
 
   this.waterAmount = 0;
@@ -3066,7 +3070,13 @@ function CoffeeMachine(power) {
 
   function getBoilTime() {
     return this.waterAmount * WATER_HEAT_CAPACITY * 80 / power; // ошибка!
-  }
+  };
+
+  // первое решение
+  this.run = function() {
+    this.timerId = setTimeout(onReady, getBoilTime.call(this));
+  };
+
   // второе решение
   // var getBoilTime = function() {
   //   return this.waterAmount * WATER_HEAT_CAPACITY * 80 / power;
@@ -3076,60 +3086,55 @@ function CoffeeMachine(power) {
   // var self = this;
   // function getBoilTime() {
   //   return self.waterAmount * WATER_HEAT_CAPACITY * 80 / power;
-  // }
+  // };
 
   function onReady() {
     alert( 'Кофе готов!' );
-  }
-
-  this.run = function() {
-    setTimeout(onReady, getBoilTime());
   };
-  // первое решение
-  // this.run = function() {
-  //   setTimeout(onReady, getBoilTime.call(this));
-  // };
+
+  this.stop = function() {
+    clearTimeout(this.timerId);
+  };
+
 }
 
-var coffeeMachine = new CoffeeMachine(1000);
-
+var coffeeMachine = new CoffeeMachine(50000);
 coffeeMachine.waterAmount = 200;
-console.log(coffeeMachine);
-
 coffeeMachine.run();
+
+coffeeMachine.stop();
+
+console.log(coffeeMachine);
 */
 
-// сеттер
+
+// Написать объект с геттерами и сеттерами
 /*
 function User() {
   var firstName, surname;
-  this.setFirstName = function(name) {
-    firstName = name;
+
+  this.setFirstName = function(str) {
+    firstName = str;
+  };
+  this.setSurname = function(str) {
+    surname = str;
   };
 
-  this.setSurname = function(sur) {
-    surname = sur;
-  }
-
   this.getFullName = function() {
-    return console.log(firstName + ' ' + surname);
-  }
+    return firstName + ' ' + surname;
+  };
 }
 
 var user = new User();
 user.setFirstName("Петя");
 user.setSurname("Иванов");
 
-user.getFullName();
-*/  
+alert( user.getFullName() ); // Петя Иванов
+*/
 
-// геттер
+// Добавить геттер для power
 /*
 function CoffeeMachine(power, capacity) {
-
-  this.getPower = function() {
-    return power;
-  };
 
   this.setWaterAmount = function(amount) {
     if (amount < 0) {
@@ -3145,13 +3150,18 @@ function CoffeeMachine(power, capacity) {
   this.getWaterAmount = function() {
     return waterAmount;
   };
-}
 
-var coffee = new CoffeeMachine(100, 500);
-coffee;
-console.log(coffee.getPower());
+  this.getPowerValue = function() {
+    return power;
+  }
+
+}
+var coffee = new CoffeeMachine(100, 200);
+console.log(coffee.getPowerValue());
 */
 
+
+// Добавить публичный метод кофеварке
 /*
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
@@ -3160,113 +3170,58 @@ function CoffeeMachine(power, capacity) {
 
   function getTimeToBoil() {
     return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
-  }
+  };
 
-  this.setWaterAmount = function(amount) {
-    if (amount < 0) {
+  this.addWater = function(value) {
+    waterAmount += value;
+    return this.setWaterAmount()
+  };
+
+  this.setWaterAmount = function(amount = 0) {
+
+    var currentValue = waterAmount + amount;
+    
+    if (currentValue <= 0) {
       throw new Error("Значение должно быть положительным");
     }
-    if (amount > capacity) {
+    if (currentValue > capacity) {
       throw new Error("Нельзя залить больше, чем " + capacity);
     }
 
-    waterAmount = amount;
-  };
-
-  this.addWater = function(amount) {
-    this.setWaterAmount(waterAmount + amount);
+    waterAmount = currentValue;
+    console.log(currentValue);
   };
 
   function onReady() {
     alert( 'Кофе готов!' );
-  }
+  };
 
   this.run = function() {
     setTimeout(onReady, getTimeToBoil());
   };
 
-}
+};
 
 var coffeeMachine = new CoffeeMachine(100000, 400);
-coffeeMachine.addWater(200);
 coffeeMachine.addWater(100);
-coffeeMachine.addWater(300); // Нельзя залить больше..
+coffeeMachine.addWater(100);
+coffeeMachine.addWater(100); // Нельзя залить больше, чем 400
+coffeeMachine.setWaterAmount(100)
+coffeeMachine.addWater(100);
 coffeeMachine.run();
 */
 
-/* не решено
-function CoffeeMachine(power, capacity) {
-  var waterAmount = 0;
 
-  var WATER_HEAT_CAPACITY = 4200;
+// Создать сеттер для onReady 
+// todo
 
-  function getTimeToBoil() {
-    return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
-  }
 
-  this.setWaterAmount = function(amount) {
-    // ... проверки пропущены для краткости
-    waterAmount = amount;
-  };
-
-  this.getWaterAmount = function(amount) {
-    return waterAmount;
-  };
-
-  function onReady() {
-    alert( 'Кофе готов!' );
-  }
-
-  this.setOnReady = function(newOnReady) {
-    onReady = newOnReady;
-  };
-
-  this.run = function() {
-    setTimeout(function() {
-      onReady();
-    }, getTimeToBoil());
-  };
-
-}
-
-var coffeeMachine = new CoffeeMachine(20000, 500);
-coffeeMachine.setWaterAmount(150);
-
-coffeeMachine.run();
-
-coffeeMachine.setOnReady(function() {
-  var amount = coffeeMachine.getWaterAmount();
-  alert( 'Готов кофе: ' + amount + 'мл' ); // Готов кофе: 150 мл
-});
-*/
-
-/*
-Когда в setTimeout передаётся onReady, по факту происходит передача 
-ссылки на область памяти, где лежит код данной функции. Данная ссылка
-хранится в функции setTimeout как её локальная переменная на протяжении
-работы данной функции, изменения снаружи никак не отражаются
-на локальной переменной - она как указывала на определённую область
-памяти, так и указывает.
-
-В момент выполнения onReady = newOnReady происходит изменение onReady 
-вне функции setTimeout - теперь "внешняя" onReady будет ссылаться на 
-другой участок памяти. Внутри функции setTimeout её локальный onReady 
-остаётся прежним. Поэтому по таймауту вызовется код из той области памяти, 
-куда указывает локальный onReady.
-При создании анонимной функции onReady никуда не сохраняется. Поэтому 
-по таймауту выполнится анонимная функция, которая не найдёт локальную 
-ссылку на onReady, поэтому вынуждена будет искать её в замыкании. А снаружи, 
-в замыкании, onReady будет иметь к этому моменту другое значение.
-
-Значение onReady будет взято на момент истечения времени в setTimeout; 
-если к этому моменту onReady переопределили, то возьмётся новое значение. 
-Т.к. в анонимной функции нигде значение не хранится, оно берётся из замыкания,
-где оно и переопределяется с помощью setOnReady.
-*/
+// Добавить метод isRunning
+// todo
 
 
                               // ООП в прототипном стиле
-
+                              // Прототип объекта
 
 // проверка нахождения свойства в объекте, а не в прототипе
 // for (var key in obj) {
@@ -3274,8 +3229,6 @@ coffeeMachine.setOnReady(function() {
 //   alert( key + " = " + obj[key] ); // выводит только "jumps"
 // }
 
-
-                                  // Задачи
 // Чему равно свойство после delete?
 /*
 var animal = {
@@ -3337,6 +3290,8 @@ var pockets = {
 console.log();
 */
 
+                // Свойство F.prototype и создание объектов через new
+
 // Прототип после создания
 /*
 function Rabbit() {}
@@ -3345,7 +3300,7 @@ Rabbit.prototype = {
 };
 
 var rabbit = new Rabbit();
-Rabbit.prototype = {}; // после создания
+Rabbit.prototype = {};
 alert( rabbit.eats ); // true
 
 var rabbit = new Rabbit();
@@ -3387,7 +3342,6 @@ console.log(menu);
 */
 
 
-
 // Есть ли разница между вызовами?
 /*
 function Rabbit(name) {
@@ -3417,22 +3371,6 @@ var obj2 = new obj.constructor();
 // либо четкого присвоения constructor
 */
 
-/*
-function Rabbit(name) {
-  this.name = name;
-}
-Rabbit.prototype.sayHi = function() {
-  alert( this.name );
-};
-var rabbit = new Rabbit("Rabbit");
-
-rabbit.sayHi();                         // this перед точкой rabbit
-Rabbit.prototype.sayHi();               // undef
-Object.getPrototypeOf(rabbit).sayHi();  // undef
-rabbit.__proto__.sayHi();               // undef
-*/
-
-
 
                               // Встроенные "классы" в JavaScript
 
@@ -3443,9 +3381,8 @@ rabbit.__proto__.sayHi();               // undef
 // }
 // showList("Вася", "Паша", "Маша"); // Вася - Паша - Маша
 
-                                  // Задачи
-// Добавить функциям defer
-// откладывает вызов на ms
+
+// Добавить функциям defer откладывает вызов на ms
 /*
 function f(ms) {
   alert( "привет" );
@@ -3491,6 +3428,7 @@ Function.prototype.defer = function(ms) {
 };
 var f = obj.g;
 f.defer(2000)(1, 2)
+
 // f.defer(2000)(1, 2); // выведет 3 через 1 секунду.
 // d.defer(2000)(2, 2);
 // f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
@@ -3503,8 +3441,190 @@ f.defer(2000)(1, 2)
 // Object.prototype.defer(func)
 
 // f.defer(1000); // выведет "привет" через 1 секунду
-
 */
+
+
+                              // Свои классы на прототипах
+
+// Перепишите в виде класса
+/*
+function CoffeeMachine(power) {
+  this._power = power; 
+  this._waterAmount = 0;
+  this._WATER_HEAT_CAPACITY = 4200;
+
+};
+CoffeeMachine.prototype.WATER_HEAT_CAPACITY = 4200;
+
+CoffeeMachine.prototype._getTimeToBoil = function() {
+  return this._waterAmount * this.WATER_HEAT_CAPACITY * 80 / this._power;
+};
+
+CoffeeMachine.prototype.run = function() {
+  setTimeout(function() {
+      alert( 'Кофе готов!' );
+    }, this._getTimeToBoil());
+};
+
+CoffeeMachine.prototype.setWaterAmount = function(amount) {
+    this._waterAmount = amount;
+};
+
+var coffeeMachine = new CoffeeMachine(10000);
+coffeeMachine.setWaterAmount(50);
+coffeeMachine.run();
+*/
+
+
+// Хомяки с __proto__
+/*
+function Hamster() {
+  this.food = [];
+};
+Hamster.prototype.food = new Array(); // пустой "живот"
+
+Hamster.prototype.found = function(something) {
+  this.food.push(something);
+};
+// Создаём двух хомяков и кормим первого
+var speedy = new Hamster();
+var lazy = new Hamster();
+
+speedy.found("яблоко");
+speedy.found("орех");
+
+alert( speedy.food.length ); // 2
+alert( lazy.food.length ); // 2 (!??)
+*/
+
+                              // Наследование классов в JavaScript
+
+///Структура наследования полностью:
+// --------- Класс-Родитель ------------
+// Конструктор родителя пишет свойства конкретного объекта
+// function Animal(name) {
+//   this.name = name;
+//   this.speed = 0;
+// }
+// // Методы хранятся в прототипе
+// Animal.prototype.run = function() {
+//   alert(this.name + " бежит!")
+// }
+// // --------- Класс-потомок -----------
+// // Конструктор потомка
+// function Rabbit(name) {
+//   Animal.apply(this, arguments);
+// }
+// // Унаследовать
+// Rabbit.prototype = Object.create(Animal.prototype);
+// // Желательно и constructor сохранить
+// Rabbit.prototype.constructor = Rabbit;
+// // Методы потомка
+// Rabbit.prototype.run = function() {
+//   // Вызов метода родителя внутри своего
+//   Animal.prototype.run.apply(this);
+//   alert( this.name + " подпрыгивает!" );
+// };
+// // Готово, можно создавать объекты
+// var rabbit = new Rabbit('Кроль');
+// rabbit.run();
+
+// Найдите ошибку в наследовании
+/*
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.walk = function() {
+  alert( "ходит " + this.name );
+};
+
+function Rabbit(name) {
+  this.name = name;
+}
+
+Rabbit.prototype = Animal.prototype; // ошибка
+// Rabbit.prototype = Object.create(Animal.prototype);
+
+Rabbit.prototype.walk = function() {
+  alert( "прыгает! и ходит: " + this.name );
+};
+
+var rabbit = new Rabbit('rabbit');
+rabbit.walk();
+*/
+
+// В чём ошибка в наследовании
+/*
+function Animal(name) {
+  this.name = name;
+
+  this.walk = function() { // переделать для прототипа
+    alert( "ходит " + this.name );
+  };
+};
+
+// Animal.prototype.walk = function() {
+//    alert( "ходит " + this.name );
+// };
+
+function Rabbit(name) {
+  Animal.apply(this, arguments);
+}
+Rabbit.prototype = Object.create(Animal.prototype);
+
+Rabbit.prototype.walk = function() {
+  alert( "прыгает " + this.name );
+};
+
+var rabbit = new Rabbit("Кроль");
+rabbit.walk();
+*/
+
+// Класс "часы"
+
+function Clock(options) {
+
+  var template = options.template;
+  var timer;
+
+  function render() {
+    var date = new Date();
+
+    var hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    var min = date.getMinutes();
+    if (min < 10) min = '0' + min;
+
+    var sec = date.getSeconds();
+    if (sec < 10) sec = '0' + sec;
+
+    // console.dir(template.replace);
+
+    var output = template.replace('h', hours).replace('m', min).replace('s', sec);
+
+    console.log(output);
+  }
+
+  this.stop = function() {
+    clearInterval(timer);
+  };
+
+  this.start = function() {
+    render();
+    timer = setInterval(render, 1000);
+  }
+
+}
+
+var clock = new Clock({
+  template: 'h:m:s'
+});
+clock.start();
+
+
+
 
 
 
@@ -3672,22 +3792,6 @@ army[5]();
 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 function Calculator() {
   this.read = function(a, b) {
@@ -3727,4 +3831,102 @@ var accumulator = new Accumulator(2); // начальное значение 1
 accumulator.read(); // прибавит ввод prompt к текущему значению
 accumulator.read(); // прибавит ввод prompt к текущему значению
 alert( accumulator.value ); // выведет текущее значение
+*/
+
+                          // Повторение реальные примеры
+// Получение query параметры
+/*
+function parseQueryString(query) {
+  var params = {};
+  var parts = query.split('&');
+  // parts = ['a=1', 'b=2', 'c=3']
+
+  parts.forEach(function(part) {
+    var temp = part.split('=');
+    //temp = ['a', '1']
+
+    params[temp[0]] = temp[1];
+    // params['a'] = '1'
+    console.log(temp);
+  });
+
+  console.log(params);
+  return params;
+};
+
+console.log(location.search);
+
+parseQueryString(location.search.slice(1));
+*/
+
+// Сумма выбранных элементов объектов в массиве
+// todo поправить 
+/*
+var arr = [
+    {
+      price: 100,
+      selected: true
+    },
+    {
+      price: 200,
+      selected: true
+    },
+    {
+      price: 300,
+      selected: true
+    },
+    {
+      price: 400,
+      selected: true
+    },
+    {
+      price: 400,
+    }
+];
+var totalPriceItems = arr
+  .filter(
+    function(item) {
+      return item.selected
+    })
+  .map(
+    function(item) {
+      return item.price
+    })
+  .reduce(
+    function(a, b) {
+      return a + b;
+    }, 0);
+console.dir(totalPriceItems)
+*/
+
+
+// Декоратор с задержкой вызова ф-ции
+/*
+function wrapWithDelay(f, delay) {
+  var isDelay = false;
+
+  return function() {
+
+    if (isDelay) {
+      return;
+    }
+
+    f.apply(this, arguments);
+
+    isDelay = true;
+
+    setTimeout(function() {
+      isDelay = false
+    }, delay)
+  }
+};
+
+console.log = wrapWithDelay(console.log, 3000);
+console.log(1);
+console.log(2);
+console.log(3);
+
+setTimeout(function() {
+  console.log(4);
+}, 3100);
 */
