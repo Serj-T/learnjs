@@ -1,24 +1,497 @@
 'use strict';
 
-// особенности
-/*
-var a = [1,2,3];
-var b = [1,2,3];
-var c = "1,2,3";
+                        // Основы JavaScript
 
-a == c;   // true
-b == c;   // true
-a == b;   // false
+                        // Консоль
 
-var a = 42;
-var b = "foo";
+// mkdir test создаёт новую папку test
+// cd test заходим в папку
+// touch index.html main.js создаём файлы в папке
 
-a < b;    // false
-a > b;    // false
-a == b;   // false
+                        // Простые типы
 
-*/
+// console.log('Простые типы');
+// var numberType = 1,
+//     stringType = 'string',
+//     boolType = false,
+//     nullType = null,
+//     undefType = undefined;
+// console.log(typeof numberType); //typeof получаем тип перменной
+// console.log(typeof stringType);
+// console.log(typeof boolType);
+// console.log(typeof nullType);
+// console.log(typeof undefType);
+// console.log('');
 
+                        // Объектные типы
+
+// console.log('Объектные типы');
+// var obj = {name: "Serj"}, //  объект
+//     array = [1,2,3,4,5], // массивы
+//     regexp = /w+/g,
+//     func = function(){};
+// console.log(typeof obj); //typeof получаем тип перменной
+// console.log(typeof array);
+// console.log(typeof regexp);
+// console.log(typeof func);
+
+                        // Числа
+
+// console.log('Числа');
+// var N = new Number(100); // Преобразование простых чисел в объекты. Объекты обертки.
+// console.log(typeof N); // Объект
+// console.log(N.toFixed(2)); // Количество знаков после точки
+// var n = 300.425;
+// console.log(typeof n); // Число
+// console.log(n.toExponential(2)); // Приведение числа с экспоненте
+// console.log(n.toPrecision(4)); // С определенной точностью
+
+                       // Операторы
+
+// Унарные операторы + и -
+// Операторы инкримента и дикремента ++ --
+// var i = 1;
+// console.log(++i); 
+// Префиксный инкримент сначала увеличивает потом отдаёт
+// console.log(i);
+// console.log(i++); 
+// Постфиксный инкримент сначала возвращает потом увеличивает
+// console.log(i);
+// console.log(10 % 3); 
+// Остаток от деления
+
+                  // Присваивание с операции
+
+// var n = 100;
+// n += 20 // 120
+// n *= 2 // 200
+
+                    // Операторы отношения true и false
+
+// console.log(10 === 10); 
+// Строгое равенство 10 === "10" false строка и число
+// console.log(10 == 10); 
+// Равенство с приведением типов
+// console.log(10 !== 10); 
+// Неравенство
+
+                    // Логический тип операторов
+
+// console.log(10 === 10);
+// console.log(Boolean(5)); // Преобразование в булевый тип числа даёт true
+// // Falsy values
+// console.log(Boolean(undefined));
+// console.log(Boolean(null));
+// console.log(Boolean(0));
+// console.log(Boolean(NaN));
+// console.log(Boolean(""));
+
+// var s = "text" // Если не пустая строка тогда выполняется
+// if (s) {
+//   console.log('I\'ts true!')
+// }
+// // Логическое И
+// console.log(true && false);
+// console.log(true && true); // Если оба операнда истины возвращается true
+// // Логическое ИЛИ
+// console.log(true || false); // Истина если хотя бы один операнд истина
+// // Логическое отрицание
+// console.log(!true);
+// // Присваивание с помощью И и ИЛИ
+// var a = 0;
+// var isTrue = true;
+// isTrue && (a = 5); // Если isTrue = true, т.е. не пустая строка тогда а=5
+// console.log(a);
+// var someString = '123'; // Если someString = true, т.е. не пустая строка тогда newString = someString иначе 'New string'
+// var newString = someString || 'New string';
+// console.log(newString);*/
+
+                        // null and undefined
+
+// undefined пустое значение, неопределенное или незаданное
+// console.log(null == undefined); // true
+// console.log(null === undefined); // false разные типы
+
+                       // Преобразование типов
+
+// console.log(Number('222')); // Приводим к числу
+// console.log(typeof(Number("222")));
+// console.log(String('222')); // Приводим к строке
+// console.log(typeof(String('222')));
+// console.log(Boolean('1')); // Приводим к числу
+// console.log(typeof(Boolean('1')));
+// // преобразуем число в булевый оператор
+// console.log(!!5); // получаем сначало false т.к. 5 не пустой значение, а потом true, инвертирование
+// // преобразуем число в строку
+// console.log(typeof(345 + ''));
+// var number = 10;
+// console.log(number.toString(4));
+// console.log(typeof(number.toString())); // в скобках система исчеслений
+// // преобразуем строку в число
+// console.log(typeof(+'345')); // унарный плюс
+// console.log(typeof(parseInt('345 px', 10))); // Может содержать любые символы, которые будут игнорироваться
+
+                        // Условные инструкции
+
+// if (true) console.log('Its true');
+// var n = 5;
+// if (n < 3) {
+//     n++;
+//   console.log(n);
+// } else {
+//   console.log('n is not bigger than three')
+// }
+
+// Конструкция else if
+// if (n < 3) {
+//     n++;
+//   console.log(n);
+// } else {
+//   console.log('n is not bigger than three')
+// }
+
+// Конструкция с несколькими типами
+// var name = 'Serj', city;
+// if (name === 'Serj') {
+//   city ='Moscow';
+// } else if (name === 'Bill') {
+//   city = 'NY';
+// } else if (name === 'John') {
+//   city = 'La';
+// }
+// console.log(city);
+
+// Конструкция switch
+// var name = 'Serj', city;
+// switch(name) {
+//   case 'Serj': city = "Moscow";
+//   case 'Bill': city = "NY";
+//   case 'John': city = 'LA'
+// }
+// console.log(city);
+// Важно!!! Ищется первок совпадение с case и выполняются все условия которые идут после!
+// Чтобы избежать в конце иструкциии case используем break чтобы при совпадении выйти из цикла
+// var name = 'Serj', city;
+// switch(name) {
+//   case 'Serj': city = "Moscow"; break;
+//   case 'Bill': city = "NY"; break;
+//   case 'John': city = 'LA'
+//   default: city = 'Unknown' // значение по умолчанию
+// }
+
+// var browser = prompt('Browser?');
+// if (browser === 'IE') alert( 'О, да у вас IE!' );
+// else if (browser === 'Chrome'
+//   || browser === 'Firefox'
+//   || browser === 'Safari'
+//   || browser === 'Opera' ) alert( 'Да, и эти браузеры мы поддерживаем' );
+// else alert( 'Мы надеемся, что и в вашем браузере все ок!' );
+
+// var a = +prompt('a?', '');
+// switch (a) {
+//   case 0: alert(0); break;
+//   case 1: alert(1); break;
+//   case 2: case 3: alert( '2,3' ); break;
+// }
+
+// console.log(city);
+// Условный (тернарный) оператор
+// выражение ? выражение2 : выражение3
+// var x = 8;
+// var text = x > 10 ? 'больше десяти' : 'меньше десяти';
+// console.log(text);
+
+// var numb = prompt('Enter number', '');
+// if (numb > 0) {
+//   alert('1');
+// } else if (numb < 0){
+//   alert('-1');
+// } else {
+//   alert('0');
+// }
+
+                          // Задачи
+
+// var userName = prompt('Your name?', '');
+// if (userName === 'admin') {
+//   var userPass = prompt("Your password")
+//   if (userPass == 123) {
+//     alert('Welcome!');
+//   } else if (userPass == null) {
+//     alert('Aborted!');
+//   } else {
+//     alert('Wrong password');
+//   }
+// } else if (userName == null) {
+//   alert('Aborted');
+// } else {
+//   alert('Wrong name');
+// }
+
+// var a = 5;
+// var b = 1;
+// var result = (a + b < 4) ?  'Мало' : 'Много';
+// alert(result);
+
+// var login = prompt('Login', '');
+// var message;
+// login == 'Вася' ? message = 'Привет' :
+// login == 'Директор' ? message = 'Здравствуйте' :
+// login == '' ? message = 'Нет логина' :
+// message = 'Пока!';
+// alert(message);
+
+                                // Циклы
+
+// for (иницилизация, тест, инкримент) тело цикла
+// var i;
+// for (i = 0; i < 10; i++) {
+//   console.log(i)
+// }
+// for (i = 10; i--) { // обратно, можно не задавать условия так i=0 будет false и цикл прекратиться
+//   console.log(i)
+// }
+// while (выражение) инструкция
+// var i = 10;
+// while (i--) {
+//   console.log(i);
+// }
+// do инструкция while (выражение) условие проверяется после тела цикла, а не до него.
+// Поэтому цикл выполняется хотя бы один раз.
+// var i = 8;
+// do console.log(i++); while (i < 10) {
+// }
+
+// for (var i = 1; i <= 10; i++) {
+//   if (i % 2 == 0){
+//     alert(i);
+//   }
+// }
+
+// var i = 0;
+// while (i < 3) {
+//   alert( "номер " + i + "!" );
+//   i++;
+// }
+
+// var numb
+// do {
+//   numb = prompt('Enter number', '');
+//   if (!numb) break;
+// }
+// while (numb < 100)
+
+// while (true) {
+//   var numb = prompt('Enter number', '');
+//   if (numb > 100 || !numb) break;
+// }
+
+// nextPrime:
+// for (var i = 1; i < 10; i++) {
+//   for (var j = 2; j < i; j++) {
+//     if (i % j == 0) continue nextPrime;
+//   }
+//   alert(i); // простое
+// }
+
+// 3i 2j j<i нет
+// 3i 3j j<i 3i
+
+// 4i 2j j<i нет
+
+// 5i 2j j<i нет
+// 5i 3j j<i нет
+// 5i 4j j<i нет
+// 5i 5j j<i 5
+
+// 6i 2j j<i нет
+
+// 7i 3j j<i нет
+// 7i 4j j<i нет
+// 7i 5j j<i нет
+// 7i 6j j<i нет
+// 7i 7j j<i 7
+// 1i 2j j<i 1i
+// 2i 2j j<i 2i
+
+                              // Функции
+
+// function идентификатор(аргументы) {
+//   инструкции
+//   return выражение
+// }
+// function greet(name) {
+//   return 'Hello ' + name;
+// } // !точка с запятой не нужна
+// Вызываем функцию greet('Serj') с апперкейсом
+// console.log(greet('Serj').toUpperCase());
+
+// var greet = function(name) {
+//   console.log(arguments); // массив всех переданных аргументов можно выбирать номер arguments[2]
+//   return 'Hello ' + name;
+// } // точка с запятой нужна
+// console.log(greet('Serj', 10, 12).toUpperCase());
+// Callback
+// var func = function(callback) {
+//   var name = 'Serj';
+//   callback(name);
+// };
+// func(function(n){
+//   console.log('Hello ' + n);
+// });
+// var greet = (function(name) {
+//   return 'Hello ' + name;
+// }('Serj'));
+// console.log(greet);
+
+                          // Цепочки областей видимости. 
+
+// var i = 5;
+// var func = function() {
+//   var i = 10;
+//   console.log(i);
+//   var innerFunc = function() {
+//     var i = 15;
+//     console.log(i);
+//   }
+//   innerFunc();
+// };
+// func();
+
+// var age = prompt('Age?', '');
+// function checkAge(age) {
+//   return (age > 18) ? true : confirm('Родители разрешили?');
+// }
+// checkAge(age);
+
+// var age = prompt('Age?', '');
+// function checkAge(age) {
+//   return(age > 18 || confirm('Родители разрешили?'));
+// }
+// checkAge(age);
+
+// var a, b;
+// function test(a, b) {
+//   a = prompt('Число a', '');
+//   b = prompt(a + ' больше?', '');
+//   alert(a + ' > ' + b + ' ?');
+//   if (a > b) {
+//     return(alert(false));
+//   }
+//   else {
+//     return(alert(true));
+//   }
+// }
+// test();
+
+                            // Замыкания
+
+// var func = function() {
+//   var i = 10;
+//   return function() {
+//     return i;
+//   }
+// };
+// var anotherFunc = function() {
+//   var i = 20;
+//   console.log(func()());
+// };
+
+                            // Счетчик
+
+// var counter = function(){
+//   var count = 1;
+//   return function(num) {
+//     count = num !== undefined ? num : count;
+//     return count++;
+//   }
+// }();
+// console.log(counter());
+// console.log(counter());
+// console.log(counter());
+// console.log(counter());
+
+                    // Преобразование типов для примитивов
+
+// "" + 1 + 0 // 10 ------
+// "" - 1 + 0 // -1
+// true + false // 1
+// 6 / "3" // 2
+// "2" * "3" // 6
+// 4 + 5 + "px" //9px
+// "$" + 4 + 5 //$45
+// "4" - 2 // 2
+// "4px" - 2 // nan -------
+// 7 / 0 // infinity
+// "  -9\n" + 5 // -9\n5 ------
+// "  -9\n" - 5 // -14
+// 5 && 2 // 2
+// 2 && 5 // 5
+// 5 || 0 // 5
+// 0 || 5 // 5
+// null + 1 // 1
+// undefined + 1 // NaN -------
+// null == "\n0\n" // false ------
+// +null == +"\n0\n" // true'
+
+                                // NFE
+
+// function foo() { return 1; } // undefined 
+// function foo() { return 1; }(); // Uncaught SyntaxError: Expected () to start arrow function, but got '}' instead of '=>'
+// (function foo() { return 1; }()) // 1
+// (function foo() { return 1; })() // 1
+// +function foo() { return 1; }();
+// -function foo() { return 1; }();
+// --function foo() { return 1; }();
+// !function foo() { return 1; }();
+// function f(n){alert(n);}(6);
+
+
+                              // Оператор in
+                           
+// var obj = {
+//   a: 1,
+//   name: 2
+// };
+
+// var x = 'name'
+// console.log('a' in obj); // true
+// console.log(x in obj); // true
+
+                        // Проверка на совпадение
+
+// var str = "Widget";
+// if (~str.indexOf("get")) {
+//   alert( 'совпадение есть!' );
+// }
+
+        // Генерация случайного целого от min до max включительно
+
+// var rand = min + Math.floor(Math.random() * (max + 1 - min));
+
+                            // Строки
+
+// console.log('\"Another \n\tlong \n\t\tstring\"'); // Переносы табы и экранирование
+// var stringType = 'Hello,';
+// console.log(stringType + 'world!'); // конкатенация (сложение строк)
+// var string = 'Sometimes the same is different';
+// console.log(string)
+// console.log(string.charAt(0)); // Возращает букву под индексом 0 - первая (!) буква
+// console.log(string.length); // Длина строки
+// console.log(string.substring(10, 21)); // Подстрока, с начала до конца, с индекса до индекса
+// console.log(string.slice(-15)); // Подстрока, с конца до начала, с индекса до индекса
+// console.log(string.substr(0, 9)); // Подстрока, с индекса + кол-во знаков
+// console.log(string.indexOf('o')); // Возвращает индекс первой найденной буквы с начала
+// console.log(string.lastIndexOf('o')); // с конца
+// console.log(string.replace('is', 'is not')); // замена одного на другое
+// console.log(string.split(" ")); // разделитель на массив (тут пробел)
+// console.log(string.toUpperCase()); // регитстр
+// console.log(string.toLowerCase()); // регитстр
+// console.log(string[4]); // Строка по ECMA5 это массив вместо charAt*/
+
+
+
+// Проверка стандарта
 /*
 var question = prompt('Напишите официальное название Javascript', '');
 if (question == 'ecma sript') {
@@ -28,6 +501,7 @@ if (question == 'ecma sript') {
 }
 */
 
+// Получить знак числа
 /*
 var question = prompt('Напишите число', '');
 if (question > 0) {
@@ -41,6 +515,7 @@ if (question > 0) {
 }
 */
 
+// Проверка логина
 /*
 var login = prompt('Кто?', '');
 if (login === 'admin') {
@@ -60,6 +535,7 @@ if (login === 'admin') {
 }
 */
 
+// Перепишите 'if' в '?'
 /*
 var a = prompt('a', '');
 var b = prompt('b', '');
@@ -67,6 +543,7 @@ var result = (+a + +b < 4) ? 'Мало' : 'Много';
 alert(result);
 */
 
+// Перепишите 'if..else' в '?'
 /*
 var login = prompt('Логин','');
 var message = (login == 'Вася') ? 'Привет' :
@@ -75,6 +552,7 @@ var message = (login == 'Вася') ? 'Привет' :
 alert(message);
 */
 
+// Перепишите 'if..else' в '?'
 /*
 var age = prompt('Возраст', '');
 if (!(age <= 90 && age >= 14)) {
@@ -83,7 +561,6 @@ if (!(age <= 90 && age >= 14)) {
   alert('NO');
 }
 */
-
 
 // Преобразование типов для примитивов
 /*
@@ -141,7 +618,6 @@ for (var i = 0; i <= 100;) {
 }
 */
 
-
 // только простые числа
 /*
 for (var i = 1; i <= 13; i++) {
@@ -154,6 +630,7 @@ for (var i = 1; i <= 13; i++) {
   }
 }
 */
+
 /*
 nextPrime:
   for (var i = 2; i < 10; i++) {
@@ -176,7 +653,6 @@ var i = 1
   alert(i)
 }
 */
-
 
 // Конструкция switch
 /*
@@ -286,8 +762,8 @@ ask(
 );
 */
 
-/*
 // new Function
+/*
 var sum = new Function('a,b', ' return a+b; ');
 
 var result = sum(1, 2);
@@ -305,7 +781,6 @@ function sumTo(n) {
 }
 alert(sumTo(100));
 */
-
 
 /*
 function sumTo(n) {
@@ -387,7 +862,8 @@ function isNumeric(n) {
 }
 */
 
-// Числа
+                              // Числа
+
 /*
 for (;;) {
   var a = prompt('a - ', '');
@@ -415,6 +891,7 @@ function getDecimal(n) {
   return Math.abs(parseFloat(n) - parseInt(n))/1;
 }
 */
+
 // Числа Фибоначи по формуле Бине
 /*
   function fibBinet(n) {
@@ -464,7 +941,7 @@ function randomInteger(min, max) {
 alert(randomInteger(1,10));
 */
 
-//Строки
+                            // Строки
 
 // Поиск всех вхождений
 /*
@@ -491,7 +968,8 @@ function ucFirst(str) {
 alert(ucFirst('привет'));
 */
 
-// Возвращает true, если строка str содержит „viagra“ или „XXX“, а иначе false.
+// Возвращает true, если строка str содержит 
+// „viagra“ или „XXX“, а иначе false.
 /*
 function checkSpam(str) {
   str = str.toLowerCase();
@@ -505,7 +983,8 @@ alert( checkSpam('free xxxxx') );
 alert( checkSpam("innocent rabbit") );
 */
 
-// Проверяет длину строки str, и если она больше maxlength меняет конец str на "..."
+// Проверяет длину строки str, если она больше maxlength 
+// меняет конец str на "..."
 /*
 function truncate(str, maxlength) {
   return (str.length > maxlength) ?
@@ -523,7 +1002,7 @@ function extractCurrencyValue(str) {
 extractCurrencyValue('$120');
 */
 
-// Объекты
+                            // Объекты
 /*
 var user = {}
 user.name = 'Вася';
@@ -561,6 +1040,23 @@ for (var key in menu) {
 }
 */
 
+// Перебор объекта с помощью Object.keys
+/*
+var user = {
+  'name': 'Serj',
+  'age': 30,
+  'work': false
+};
+
+var keys = Object.keys(user)
+
+keys.forEach(function(key) {
+  console.log(key + ' ' + user[key]);
+});
+
+console.log(keys);
+*/
+
 // Пуст ли объект
 /*
 function isEmpty(obj) {
@@ -575,7 +1071,8 @@ schedule["8:30"] = "подъём";
 alert( isEmpty(schedule) )
 */
 
-/* Cумма зарплат с проверками на пустую строку и 
+// Cумма зарплат с проверками на пустую строку
+/* 
 function isEmpty(salaries) {
   var sum = 0;
   for (var key in salaries) {
@@ -596,8 +1093,7 @@ salaries.Vitya = '';
 alert(isEmpty(salaries));
 */
 
-
-//Сумма свойств и свойство с наибольшим значением
+// Сумма свойств и свойство с наибольшим значением
 /*
 function getSum(obj) {
   var sum = 0;
@@ -665,8 +1161,9 @@ function multiplyNumeric(obj) {
 multiplyNumeric(menu);
 */
 
-// Массивы
-//Получить последний элемент массива
+                              // Массивы
+
+// Получить последний элемент массива
 /*
 var goods = [1,2,3,'да'];
 var lastItem = alert(goods[goods.length - 1]);
@@ -745,14 +1242,13 @@ Object.keys(user).forEach(function(key) {
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
 };
-
 var arr = [];
-
 
 for (var i = 0; i >= 0; i++) {
   var num = prompt('num' + i + ' = ', '');
 
-  if (!isNumeric(num)) break; // или if (num === "" || num === null || isNaN(num))
+  if (!isNumeric(num)) break; 
+  // или if (num === "" || num === null || isNaN(num))
 
   arr[i] = num; // или arr.push(num);
 }
@@ -771,7 +1267,8 @@ var arr2 = [];
 for (var i = 0; i < arr.length; i++) arr2[i] = arr[i];
 */
 
-// Ищет в массиве arr значение value и возвращает его номер или -1, если не найдено.
+// Ищет в массиве arr значение value и возвращает 
+// его номер или -1, если не найдено.
 /*
 var arr = [1, 'test', 3, 'test', 5];
 
@@ -808,7 +1305,6 @@ filterRange(arr, 0, 5);
 */
 
 // Решето Эратосфена
-
 /*
 var max = 99;
 var arr = [];
@@ -857,13 +1353,12 @@ for (var n = 2; n * n <= 100; n++ ) {
 
   simpleNumb = simpleNumb.concat(result).sort(compareNumeric);
 };
+
+for (var x = 1; x <= 100; x++) {
+  if (simpleNumb[x] === simpleNumb[x + 1]) console.log(simpleNumb[x])
+};
+console.log('simpleNumb - ' + simpleNumb);
 */
-
-// for (var x = 1; x <= 100; x++) {
-//   if (simpleNumb[x] === simpleNumb[x + 1]) console.log(simpleNumb[x])
-// };
-// console.log('simpleNumb - ' + simpleNumb);
-
 
 // Подмассив наибольшей суммы
 /*
@@ -888,8 +1383,8 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 */
 
+                                // Массивы: методы
 
-// Массивы: методы
 // Коллекция уникальных элементов
 /*
 var store = {}; // объект для коллекции
@@ -1064,7 +1559,6 @@ printList(list);
 var arr = ["воз", "киборг", "корсет", "ЗОВ", "гробик", "костер", "сектор"];
 var sortName = [];
 
-
 function aclean(arr) {
   for (var i = 0; i < arr.length; i++) {
     sortName[i] = arr[i].split('').sort().join('').toLowerCase();
@@ -1085,6 +1579,7 @@ function aclean(arr) {
 
 aclean(arr);
 */
+
 /*
 var arr = ["воз", "киборг", "киборг", "киборг", "корсет", "ЗОВ", "гробик", "костер", "сектор"];
 
@@ -1135,7 +1630,8 @@ function unique(strings) {
 alert( unique(strings) ); 
 */
 
-// Массив: перебирающие методы
+                              // Массив: перебирающие методы
+
 // Перепишите цикл через map
 /*
 var arr = ["Есть", "жизнь", "на", "Марсе"];
@@ -1191,6 +1687,7 @@ function getSums(arr) {
   return res.ar;
 }
 */
+
 /*
 function getSums(arr) {
   var reduceArr = [];
@@ -1203,7 +1700,8 @@ function getSums(arr) {
 }
 */
 
-// Псевдомассив аргументов "arguments"
+                          // Псевдомассив аргументов "arguments"
+
 // Копирование свойств из нескольких объектов в один
 /*
 var vasya = {
@@ -1241,6 +1739,7 @@ function copy() {
   return dst;
 }
 */
+
 // Проверка на аргумент-undefined
 /*
 function f(x) {
@@ -1265,6 +1764,7 @@ function sum() {
 };
 sum(1, 2, 3, 4);
 */
+
 // В одну строку
 /*
 function sum () {
@@ -1272,7 +1772,8 @@ function sum () {
 }
 */
 
-// Дата и Время
+                                      // Дата и Время
+
 // Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут
 // alert(new Date(2012,  1, 20, 3, 12));
 // Выводит текущий день недели в коротком формате „пн“, „вт“, … „вс“.
@@ -1289,6 +1790,7 @@ function getWeekDay(date) {
 alert( getWeekDay(date) );      // Должно вывести 'вт'
 alert( date.toLocaleString('ru', {weekday: 'short'}) ) // или так
 */
+
 // День недели в европейской нумерации
 /*
 var date = new Date(2012,0,3);  // 3 января 2012
@@ -1365,7 +1867,8 @@ formatDate(d);
 // Относительное форматирование даты
 // todo
 
-// Замыкание
+                                    // Замыкание
+
 // Локальные переменные для объекта
 // sum(a)(b) = a+b
 /*
@@ -1457,6 +1960,7 @@ console.log(filter(numbers, inBetween(3, 6)) );
 var filteredArray = arr.filter(inBetween(2, 6));
 console.log(filteredArray);
 */
+
 // var filteredArray = arr.filter(inBetween(3, 6)); фильтр
 // var filteredArray = arr.filter(f); передаём функцию
 // function f(i) { return i >= min && i <= max }; создаём функцию для фильтра
@@ -1466,7 +1970,7 @@ console.log(filteredArray);
 // var checkIfValue = inBetween(3, 6); замыкание
 
 // Второе решение не оптимальное через filter
-// нужен код ревью
+// todo
 /*
 var arr = [1, 2, 3, 4, 5, 6, 7];
 
@@ -1499,7 +2003,7 @@ console.log(filter(arr, function(a) {
 console.log(filter(arr, inArray([1, 2, 6, 4, 10]) ) ); // 1,2,4,6
 */
 
-// Пример выполнения функции и
+// Пример выполнения функции
 /*
 var shooters = [0, 1, 2, 3, 4];
 
@@ -1514,36 +2018,68 @@ shooters.forEach(function(item, i) {
 });
 */
 
-
 // Армия функций
 /*
-function createElement(number) { // 0
-  var tempElement = function() {
-    alert(number);
-  };
-  return tempElement;
-};
-
 function makeArmy() {
+  var army = [];
 
-  var arr = [];
+  for (var i = 0; i < 10; i++) {
 
-  for (var i = 0; i < 3; i++) {
-    var element = createElement(i);
-    arr.push(element);// ссылка на функцию!
-  };
+    // Первое решение
+    /* 
+    var robot = function innerRobot() {
+      alert( innerRobot.i );
+    };
+    robot.i = i;
+    army.push(robot);
+    */ 
 
-  return arr;
+    // Второе решение
+    /*
+    var robot = (function(x) {
+
+      return function() {
+        alert(x);
+      }
+    })(i);
+    army.push(robot);
+    */
+    //(цикл)(fn(i) {})(i)
+    // Третье решение. Crazy. Не понятно
+    /*
+    for (var i = 0; i < 10; i++)(function(i) {
+      console.log(i)
+      var robot = function() {
+        alert( i );
+      };
+      army.push(robot);
+
+    })(i);
+    return robot;
+    */
+    // мое решение
+    /*
+    var createRobot = function() {
+      var numb = i;
+      return function() {
+        alert(numb)
+      }
+    };
+    army.push(createRobot());
+    
+  }
+
+  return army;
 };
 
 var army = makeArmy();
-army; // запускаем ф-цию
 
-army[2]() // выводим нужную ф-цию из массива
-army[1]() // запускаем ф-цую 0 из массива
+army[2]();
+army[5]();
 */
 
-// This
+                                        // This
+
 // Калькулятор
 /*
 var a = +prompt('Введите значение a -', '');
@@ -1610,9 +2146,23 @@ ladder.showStep(); // 1
 
 ladder.up().up().down().up().down().showStep(); // 1
 */
+// Перебор объекта с помощью Object.keys
+/*
+var user = {
+  'name': 'Serj',
+  'age': 30,
+  'work': false
+};
 
+var keys = Object.keys(user)
 
-//Преобразование объектов: toString и valueOf
+keys.forEach(function(key) {
+  console.log(key + ' ' + user[key]);
+});
+
+console.log(keys);
+*/
+                            // Преобразование объектов: toString и valueOf
 
 // Вопросник по преобразованиям, для объектов
 /*
@@ -1726,9 +2276,8 @@ powerCalc.addMethod("*", function(a, b) {
 alert(powerCalc.calculate("2 * 2"));
 */
 
+                                      // This
 
-
-// This
 // NFE имя функции видно только внутри функци 
 // если вызвать test() то test is not defined
 
@@ -1758,7 +2307,6 @@ alert(powerCalc.calculate("2 * 2"));
 //   b: 42
 //   result undefined
 // }
-
 
 // var g = function test(a, b) { 
 //   var result = a + b;
@@ -1803,7 +2351,7 @@ alert(powerCalc.calculate("2 * 2"));
 // console.log(g()) // 1 
 // console.log(g()) // 2
 
-// или можно так
+// или так
 // var g = (function f() {
 //   var count = 0;
 //   return function() {
@@ -1888,7 +2436,7 @@ alert(powerCalc.calculate("2 * 2"));
 // f = null;
 // g(5);
 
-// именнование аргументы
+// Именнование аргументы
 // function war(width, height, title, contents, yesno) {
 //   width = width || 200;
 //   height = height || 200;
@@ -1911,7 +2459,8 @@ alert(powerCalc.calculate("2 * 2"));
 // warning(options);
 // options.width = 500;
 
-// Методы объектов
+                                  // Методы объектов
+
 // var user = {
 //   name: 'Serj',
 //   sayHi: function() {
@@ -1927,7 +2476,8 @@ alert(powerCalc.calculate("2 * 2"));
 
 // user.sayHi();
 
-// Конструкторы new
+                                // Конструкторы new
+
 // function User(name) {
 //   // this = {} new создаёт пустой объект
 //   this.name = name;
@@ -1963,7 +2513,6 @@ alert(powerCalc.calculate("2 * 2"));
 //   this.sayHi = function() {
 //     alert('Hi, ' + name);
 //   };
-
 // };
 
 // var serj = new User('Serj');
@@ -1971,7 +2520,7 @@ alert(powerCalc.calculate("2 * 2"));
 // serj.getName(); // можно получить name но нельзя изменить
 // serj.sayHi(); 
 
-// контекст this 
+// Контекст this 
 // function User(name) {
 //   this.name = name;
 // };
@@ -2001,8 +2550,8 @@ alert(powerCalc.calculate("2 * 2"));
 // kate['sayHi']();
 
 
+                          // Явный this. call and apply
 /*
-явный this. call and apply
 var user = {
   surname: 'tele',
   name: 'serj',
@@ -2097,14 +2646,14 @@ function printArgs() {
 printArgs('Привет', 'мой', 'мир'); // Привет, мой, мир
 */
 
-// получить максимум из элементов arr при помощи apply
+// Получить максимум из элементов arr при помощи apply
 /*
 var arr = [];
 arr.push(1);
 arr.push(5);
 arr.push(2);
 
-// получить максимум из элементов arr
+// Получить максимум из элементов arr
 alert( Math.max.apply(null, arr) ); // 5
 */
 
@@ -2113,9 +2662,7 @@ alert( Math.max.apply(null, arr) ); // 5
 //   var argStr = [].join.call(arguments, ';');
 //   console.log(args.join('-'));
 // };
-
 // show(1, 2, 3, 4, 5);
-
 
 // Перенаправление вызовов
 /*
@@ -2146,7 +2693,8 @@ admin.sayHi();
 admin.edit();
 */
 
-// Преобразование типов для объектов
+                          // Преобразование типов для объектов
+
 /*
 var room = {
   number: 777,
@@ -2164,7 +2712,8 @@ alert(+room) // преобразование к числу
 */
 
 
-// Статические и фабричные методы
+                            // Статические и фабричные методы
+
 // Методы и свойства, которые не привязаны к конкретному экземпляру объекта,
 // называют «статическими». Их записывают прямо в саму функцию-конструктор.
 
@@ -2227,7 +2776,6 @@ User.createFromData = function(userData) {
 }
 
 // Использование
-
 var guest = User.createAnonymous();
 guest.sayHi(); // Аноним
 
@@ -2331,7 +2879,6 @@ function sumArgs() {
 alert( sumArgs(4, 5, 6) ); // 15
 */
 
-
 // Применить функцию к аргументам
 /*
 function applyAll(fn) {
@@ -2344,9 +2891,8 @@ function applyAll(fn) {
 alert( applyAll(Math.max, 10, -2, 3) ); // 3
 */
 
-
-
                                                     // Декораторы
+
 // Проблема с setTimeout первое решение
 /*
 var petya = {
@@ -2521,8 +3067,8 @@ function ask(question, answer, ok, fail) {
 }
 */
 
+            // Задачи к привязка контекста и карринг: "bind"
 
-// Задачи к привязка контекста и карринг: "bind"
 // Кросс-браузерная эмуляция bind
 /*
 function bind(func, context) {                // +args
@@ -2653,6 +3199,7 @@ vasya.checkPassword();
 */
 
 // Использование функции вопросов с каррингом
+
 /*
 function ask(question, answer, ok, fail) {
   var result = prompt(question, '');
@@ -2763,7 +3310,6 @@ sum(true, null); // некорректный аргумент номер 0
 sum(1, ["array", "in", "sum?!?"], 2); // некорректный аргумент номер 1
 */
 
-
 // Декоратор проверки доступа
 /*
 function checkPermissionDecorator(f) {
@@ -2778,7 +3324,6 @@ function save() { ... }
 save = checkPermissionDecorator(save);
 // вызов функции save() проверяет права
 */
-
 
 // Логирующий декоратор (1 аргумент)
 /*
@@ -2832,8 +3377,8 @@ for (var i = 0; i < log.length; i++) {
 }
 */
 
-
-// Кеширующий декоратор решено не верно
+// Кеширующий декоратор 
+// todo
 /*
 function f(x) {
   return Math.random() * x; // random для удобства тестирования
@@ -2881,8 +3426,8 @@ alert( a == b ); // false, другой аргумент => другое зна�
 console.log(b);
 */
 
-
                               // Задача из реальной жизни
+
 // используем как метод объекта
 /*
 var order = {
@@ -3056,8 +3601,6 @@ function sumArgs() { // можно так function sumArgs(...args) === args[a, 
 console.log(sumArgs(1, 2, 3));
 */
 
-
-
                             // ООП в функциональном стиле
 
 // Добавить метод и свойство кофеварке stop
@@ -3095,7 +3638,6 @@ function CoffeeMachine(power) {
   this.stop = function() {
     clearTimeout(this.timerId);
   };
-
 }
 
 var coffeeMachine = new CoffeeMachine(50000);
@@ -3106,7 +3648,6 @@ coffeeMachine.stop();
 
 console.log(coffeeMachine);
 */
-
 
 // Написать объект с геттерами и сеттерами
 /*
@@ -3160,7 +3701,6 @@ var coffee = new CoffeeMachine(100, 200);
 console.log(coffee.getPowerValue());
 */
 
-
 // Добавить публичный метод кофеварке
 /*
 function CoffeeMachine(power, capacity) {
@@ -3211,629 +3751,13 @@ coffeeMachine.addWater(100);
 coffeeMachine.run();
 */
 
-
 // Создать сеттер для onReady 
 // todo
-
 
 // Добавить метод isRunning
 // todo
 
-
-                              // ООП в прототипном стиле
-                              // Прототип объекта
-
-// проверка нахождения свойства в объекте, а не в прототипе
-// for (var key in obj) {
-//   if (!obj.hasOwnProperty(key)) continue; // пропустить "не свои" свойства
-//   alert( key + " = " + obj[key] ); // выводит только "jumps"
-// }
-
-// Чему равно свойство после delete?
-/*
-var animal = {
-  jumps: null
-};
-var rabbit = {
-  jumps: true
-};
-
-rabbit.__proto__ = animal;
-alert( rabbit.jumps ); // true
-delete rabbit.jumps;
-alert( rabbit.jumps ); // null
-delete animal.jumps;
-alert( rabbit.jumps ); // undefined
-*/                       
-
-
-// Прототип и this
-/*
-var animal = {
-  eat: function() {
-    this.full = true;
-  }
-};
-var rabbit = {
-  __proto__: animal
-  // full = true
-};
-
-rabbit.eat();
-*/
-
-
-// Алгоритм для поиска
-/*
-var head = {
-  glasses: 1,
-  //__proto__: pockets,
-  // не сработает head.money == 2000
-  // из-за порядка присвоения
-};
-
-var table = {
-  pen: 3,
-  __proto__: head,
-};
-
-var bed = {
-  sheet: 1,
-  pillow: 2,
-  __proto__: table,
-};
-
-var pockets = {
-  money: 2000,
-  __proto__: bed,
-};
-console.log();
-*/
-
-                // Свойство F.prototype и создание объектов через new
-
-// Прототип после создания
-/*
-function Rabbit() {}
-Rabbit.prototype = {
-  eats: true
-};
-
-var rabbit = new Rabbit();
-Rabbit.prototype = {};
-alert( rabbit.eats ); // true
-
-var rabbit = new Rabbit();
-Rabbit.prototype.eats = false; 
-alert( rabbit.eats ); // false
-
-var rabbit = new Rabbit();
-delete rabbit.eats; // (*)
-alert( rabbit.eats ); // true
-
-var rabbit = new Rabbit();
-delete Rabbit.prototype.eats; // (*)
-alert( rabbit.eats ); // undefined
-*/
-
-
-// Аргументы по умолчанию
-/*
-function Menu(options) {
-  options = Object.create(options);
-  options.width = 300;
-
-  alert("width: " + options.width); // возьмёт width из наследника
-  alert("height: " + options.height); // возьмёт height из исходного объекта
-}
-
-var options = {
-  width: 100,
-  height: 200
-};
-
-var menu = new Menu(options);
-
-alert("original width: " + options.width); // width исходного объекта
-alert("original height: " + options.height); // height исходного объекта
-
-// var Menu = new createMenu({width: 100});
-console.log(menu);
-*/
-
-
-// Есть ли разница между вызовами?
-/*
-function Rabbit(name) {
-  this.name = name;
-}
-Rabbit.prototype.sayHi = function() {
-  alert( this.name );
-};
-
-var rabbit = new Rabbit("Rabbit");
-
-rabbit.sayHi(); 
-// Rabbit this перед точкой
-Rabbit.prototype.sayHi(); 
-// undefined this не перед точкой
-Object.getPrototypeOf(rabbit).sayHi(); 
-// undefined this не перед точкой
-rabbit.__proto__.sayHi(); 
-// undefined this не перед точкой
-*/
-
-// Создать объект тем же конструктором
-/*
-var obj = new Obj();
-var obj2 = new obj.constructor();
-// при условии не изменения prototype
-// либо четкого присвоения constructor
-*/
-
-
-                              // Встроенные "классы" в JavaScript
-
-// Вызов методов через call и apply из прототипа
-// function showList() {
-//   alert( [].join.call(arguments, " - ") );
-//   alert( Array.prototype.join.call(arguments, " - ") );
-// }
-// showList("Вася", "Паша", "Маша"); // Вася - Паша - Маша
-
-
-// Добавить функциям defer откладывает вызов на ms
-/*
-function f(ms) {
-  alert( "привет" );
-};
-function d(ms) {
-  alert( "пока" );
-};
-Function.prototype.defer = function(ms) {
-  return setTimeout(this, ms);
-};
-
-f.defer(1000)
-d.defer(4000)
-*/
-
-
-// Добавить функциям defer с аргументами
-/*
-function f(a, b) {
-  alert( a + b );
-}
-var obj = {
-  a: 10,
-  b: 10,
-  g: function(a, b) {
-    alert(this.a + this.b);
-  },
-}
-
-Function.prototype.defer = function(ms) {
-  var context = this;
-
-  return function() { // 1, 2
-    var args = arguments;
-    console.log(args)
-    console.log(context)
-    console.log(ms)
-    var g = setTimeout(function() {
-      context.apply(context, args)
-    }, ms)
-    return g;
-  }
-};
-var f = obj.g;
-f.defer(2000)(1, 2)
-
-// f.defer(2000)(1, 2); // выведет 3 через 1 секунду.
-// d.defer(2000)(2, 2);
-// f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
-
-// function f() {
-//   alert( "привет" );
-// }
-
-// f
-// Object.prototype.defer(func)
-
-// f.defer(1000); // выведет "привет" через 1 секунду
-*/
-
-
-                              // Свои классы на прототипах
-
-// Перепишите в виде класса
-/*
-function CoffeeMachine(power) {
-  this._power = power; 
-  this._waterAmount = 0;
-  this._WATER_HEAT_CAPACITY = 4200;
-
-};
-CoffeeMachine.prototype.WATER_HEAT_CAPACITY = 4200;
-
-CoffeeMachine.prototype._getTimeToBoil = function() {
-  return this._waterAmount * this.WATER_HEAT_CAPACITY * 80 / this._power;
-};
-
-CoffeeMachine.prototype.run = function() {
-  setTimeout(function() {
-      alert( 'Кофе готов!' );
-    }, this._getTimeToBoil());
-};
-
-CoffeeMachine.prototype.setWaterAmount = function(amount) {
-    this._waterAmount = amount;
-};
-
-var coffeeMachine = new CoffeeMachine(10000);
-coffeeMachine.setWaterAmount(50);
-coffeeMachine.run();
-*/
-
-
-// Хомяки с __proto__
-/*
-function Hamster() {
-  this.food = [];
-};
-Hamster.prototype.food = new Array(); // пустой "живот"
-
-Hamster.prototype.found = function(something) {
-  this.food.push(something);
-};
-// Создаём двух хомяков и кормим первого
-var speedy = new Hamster();
-var lazy = new Hamster();
-
-speedy.found("яблоко");
-speedy.found("орех");
-
-alert( speedy.food.length ); // 2
-alert( lazy.food.length ); // 2 (!??)
-*/
-
-                              // Наследование классов в JavaScript
-
-///Структура наследования полностью:
-// --------- Класс-Родитель ------------
-// Конструктор родителя пишет свойства конкретного объекта
-// function Animal(name) {
-//   this.name = name;
-//   this.speed = 0;
-// }
-// // Методы хранятся в прототипе
-// Animal.prototype.run = function() {
-//   alert(this.name + " бежит!")
-// }
-// // --------- Класс-потомок -----------
-// // Конструктор потомка
-// function Rabbit(name) {
-//   Animal.apply(this, arguments);
-// }
-// // Унаследовать
-// Rabbit.prototype = Object.create(Animal.prototype);
-// // Желательно и constructor сохранить
-// Rabbit.prototype.constructor = Rabbit;
-// // Методы потомка
-// Rabbit.prototype.run = function() {
-//   // Вызов метода родителя внутри своего
-//   Animal.prototype.run.apply(this);
-//   alert( this.name + " подпрыгивает!" );
-// };
-// // Готово, можно создавать объекты
-// var rabbit = new Rabbit('Кроль');
-// rabbit.run();
-
-// Найдите ошибку в наследовании
-/*
-function Animal(name) {
-  this.name = name;
-}
-
-Animal.prototype.walk = function() {
-  alert( "ходит " + this.name );
-};
-
-function Rabbit(name) {
-  this.name = name;
-}
-
-Rabbit.prototype = Animal.prototype; // ошибка
-// Rabbit.prototype = Object.create(Animal.prototype);
-
-Rabbit.prototype.walk = function() {
-  alert( "прыгает! и ходит: " + this.name );
-};
-
-var rabbit = new Rabbit('rabbit');
-rabbit.walk();
-*/
-
-// В чём ошибка в наследовании
-/*
-function Animal(name) {
-  this.name = name;
-
-  this.walk = function() { // переделать для прототипа
-    alert( "ходит " + this.name );
-  };
-};
-
-// Animal.prototype.walk = function() {
-//    alert( "ходит " + this.name );
-// };
-
-function Rabbit(name) {
-  Animal.apply(this, arguments);
-}
-Rabbit.prototype = Object.create(Animal.prototype);
-
-Rabbit.prototype.walk = function() {
-  alert( "прыгает " + this.name );
-};
-
-var rabbit = new Rabbit("Кроль");
-rabbit.walk();
-*/
-
-// Класс "часы"
-
-function Clock(options) {
-
-  var template = options.template;
-  var timer;
-
-  function render() {
-    var date = new Date();
-
-    var hours = date.getHours();
-    if (hours < 10) hours = '0' + hours;
-
-    var min = date.getMinutes();
-    if (min < 10) min = '0' + min;
-
-    var sec = date.getSeconds();
-    if (sec < 10) sec = '0' + sec;
-
-    // console.dir(template.replace);
-
-    var output = template.replace('h', hours).replace('m', min).replace('s', sec);
-
-    console.log(output);
-  }
-
-  this.stop = function() {
-    clearInterval(timer);
-  };
-
-  this.start = function() {
-    render();
-    timer = setInterval(render, 1000);
-  }
-
-}
-
-var clock = new Clock({
-  template: 'h:m:s'
-});
-clock.start();
-
-
-
-
-
-
-
-/*
-// Оператор in
-var obj = {
-  a: 1,
-  name: 2
-};
-
-var x = 'name'
-console.log('a' in obj); // true
-console.log(x in obj); // true
-*/
-
-
-
-// NFE
-/*
-function foo() { return 1; } // undefined 
-function foo() { return 1; }(); // Uncaught SyntaxError: Expected () to start arrow function, but got '}' instead of '=>'
-(function foo() { return 1; }()) // 1
-(function foo() { return 1; })() // 1
-+function foo() { return 1; }();
--function foo() { return 1; }();
---function foo() { return 1; }();
-!function foo() { return 1; }();
-function f(n){alert(n);}(6);
-*/
-
-
-// Проверка на совпадение
-/*
-var str = "Widget";
-
-if (~str.indexOf("get")) {
-  alert( 'совпадение есть!' );
-}
-*/
-
-// генерация случайного целого от min до max включительно
-// var rand = min + Math.floor(Math.random() * (max + 1 - min));
-
-
-// Каллории
-/*
-var obj = {
-  carrot: [32, 1.3, 0.1, 6.9, 190],
-  onion: [47, 1.4, 0, 10.4, 130],
-  bob: [123, 7.8, 0.5, 21.5, 630],
-  bul: [18.8, 3.9, 0.3, 0.1, 2000],
-  potatos: [76, 2, 0.4, 16.1, 380]
-}
-
-function getCall(portion) {
-
-  var result = [];
-  var totalWeight = 0;
-
-  for (var key in obj) {
-    var lastIndex = obj[key].length - 1;
-
-    console.log(lastIndex);
-    totalWeight += obj[key][lastIndex];
-
-    for (var i = 0; i < obj[key].length; i++) {
-
-    }
-  }
-
-  return totalWeight;
-}
-console.log(getCall(1));
-*/
-
-/*
-function showWarning(options) {
-  var width = options.width || 200; // по умолчанию
-  var height = options.height || 100;
-
-  var contents = options.contents || "Предупреждение";
-}
-
-showWarning({
-  contents: "Вы вызвали функцию" // и всё понятно!
-});
-*/
-
-// Перебор объекта с помощью Object.keys
-/*
-var user = {
-  'name': 'Serj',
-  'age': 30,
-  'work': false
-};
-
-var keys = Object.keys(user)
-
-keys.forEach(function(key) {
-  console.log(key + ' ' + user[key]);
-});
-
-console.log(keys);
-*/
-
-
-/*
-function makeArmy() {
-  var army = [];
-
-  for (var i = 0; i < 10; i++) {
-
-    // Первое решение
-    /* 
-    var robot = function innerRobot() {
-      alert( innerRobot.i );
-    };
-    robot.i = i;
-    army.push(robot);
-    */ 
-
-    // Второе решение
-    /*
-    var robot = (function(x) {
-
-      return function() {
-        alert(x);
-      }
-    })(i);
-    army.push(robot);
-    */
-    //(цикл)(fn(i) {})(i)
-    // Третье решение. Crazy. Не понятно
-    /*
-    for (var i = 0; i < 10; i++)(function(i) {
-      console.log(i)
-      var robot = function() {
-        alert( i );
-      };
-      army.push(robot);
-
-    })(i);
-    return robot;
-    */
-    // мое решение
-    /*
-    var createRobot = function() {
-      var numb = i;
-      return function() {
-        alert(numb)
-      }
-    };
-    army.push(createRobot());
-    
-  }
-
-  return army;
-};
-
-var army = makeArmy();
-
-army[2]();
-army[5]();
-*/
-
-
-/*
-function Calculator() {
-  this.read = function(a, b) {
-    this.a = +prompt('Введите значение a -', 0);
-    this.b = +prompt('Введите значение b -', 0);
-  };
-
-  this.sum = function() {
-    return this.a + this.b
-  };
-  this.mul = function() {
-    return this.a * this.b
-  };
-} 
-var calculator = new Calculator();
-calculator.read();
-
-alert( "Сумма=" + calculator.sum() );
-alert( "Произведение=" + calculator.mul() );
-*/  
-/*
-function Accumulator(startingValue) {
-
-  if (startingValue === undefined) startingValue = 0;
-
-  this.value = startingValue;
-
-  this.read = function(a) {
-    var a = +prompt('Введите значение ', 0);
-    this.value += a;
-  };
-}
-
-
-var accumulator = new Accumulator(2); // начальное значение 1
-
-accumulator.read(); // прибавит ввод prompt к текущему значению
-accumulator.read(); // прибавит ввод prompt к текущему значению
-alert( accumulator.value ); // выведет текущее значение
-*/
-
-                          // Повторение реальные примеры
+                      // Повторение реальные примеры
 // Получение query параметры
 /*
 function parseQueryString(query) {
@@ -3899,7 +3823,6 @@ var totalPriceItems = arr
 console.dir(totalPriceItems)
 */
 
-
 // Декоратор с задержкой вызова ф-ции
 /*
 function wrapWithDelay(f, delay) {
@@ -3929,4 +3852,402 @@ console.log(3);
 setTimeout(function() {
   console.log(4);
 }, 3100);
+*/
+                              // ООП в прототипном стиле
+                              // Прототип объекта
+
+// проверка нахождения свойства в объекте, а не в прототипе
+// for (var key in obj) {
+//   if (!obj.hasOwnProperty(key)) continue; // пропустить "не свои" свойства
+//   alert( key + " = " + obj[key] ); // выводит только "jumps"
+// }
+
+// Чему равно свойство после delete?
+/*
+var animal = {
+  jumps: null
+};
+var rabbit = {
+  jumps: true
+};
+
+rabbit.__proto__ = animal;
+alert( rabbit.jumps ); // true
+delete rabbit.jumps;
+alert( rabbit.jumps ); // null
+delete animal.jumps;
+alert( rabbit.jumps ); // undefined
+*/                       
+
+// Прототип и this
+/*
+var animal = {
+  eat: function() {
+    this.full = true;
+  }
+};
+var rabbit = {
+  __proto__: animal
+  // full = true
+};
+
+rabbit.eat();
+*/
+
+// Алгоритм для поиска
+/*
+var head = {
+  glasses: 1,
+  //__proto__: pockets,
+  // не сработает head.money == 2000
+  // из-за порядка присвоения
+};
+
+var table = {
+  pen: 3,
+  __proto__: head,
+};
+
+var bed = {
+  sheet: 1,
+  pillow: 2,
+  __proto__: table,
+};
+
+var pockets = {
+  money: 2000,
+  __proto__: bed,
+};
+console.log();
+*/
+
+                // Свойство F.prototype и создание объектов через new
+
+// Прототип после создания
+/*
+function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+var rabbit = new Rabbit();
+Rabbit.prototype = {};
+alert( rabbit.eats ); // true
+
+var rabbit = new Rabbit();
+Rabbit.prototype.eats = false; 
+alert( rabbit.eats ); // false
+
+var rabbit = new Rabbit();
+delete rabbit.eats; // (*)
+alert( rabbit.eats ); // true
+
+var rabbit = new Rabbit();
+delete Rabbit.prototype.eats; // (*)
+alert( rabbit.eats ); // undefined
+*/
+
+// Аргументы по умолчанию
+/*
+function Menu(options) {
+  options = Object.create(options);
+  options.width = 300;
+
+  alert("width: " + options.width); // возьмёт width из наследника
+  alert("height: " + options.height); // возьмёт height из исходного объекта
+}
+
+var options = {
+  width: 100,
+  height: 200
+};
+
+var menu = new Menu(options);
+
+alert("original width: " + options.width); // width исходного объекта
+alert("original height: " + options.height); // height исходного объекта
+
+// var Menu = new createMenu({width: 100});
+console.log(menu);
+*/
+
+// Есть ли разница между вызовами?
+/*
+function Rabbit(name) {
+  this.name = name;
+}
+Rabbit.prototype.sayHi = function() {
+  alert( this.name );
+};
+
+var rabbit = new Rabbit("Rabbit");
+
+rabbit.sayHi(); 
+// Rabbit this перед точкой
+Rabbit.prototype.sayHi(); 
+// undefined this не перед точкой
+Object.getPrototypeOf(rabbit).sayHi(); 
+// undefined this не перед точкой
+rabbit.__proto__.sayHi(); 
+// undefined this не перед точкой
+*/
+
+// Создать объект тем же конструктором
+/*
+var obj = new Obj();
+var obj2 = new obj.constructor();
+// при условии не изменения prototype
+// либо четкого присвоения constructor
+*/
+
+                              // Встроенные "классы" в JavaScript
+
+// Вызов методов через call и apply из прототипа
+// function showList() {
+//   alert( [].join.call(arguments, " - ") );
+//   alert( Array.prototype.join.call(arguments, " - ") );
+// }
+// showList("Вася", "Паша", "Маша"); // Вася - Паша - Маша
+
+
+// Добавить функциям defer откладывает вызов на ms
+/*
+function f(ms) {
+  alert( "привет" );
+};
+function d(ms) {
+  alert( "пока" );
+};
+Function.prototype.defer = function(ms) {
+  return setTimeout(this, ms);
+};
+
+f.defer(1000)
+d.defer(4000)
+*/
+
+// Добавить функциям defer с аргументами
+/*
+function f(a, b) {
+  alert( a + b );
+}
+var obj = {
+  a: 10,
+  b: 10,
+  g: function(a, b) {
+    alert(this.a + this.b);
+  },
+}
+
+Function.prototype.defer = function(ms) {
+  var context = this;
+
+  return function() { // 1, 2
+    var args = arguments;
+    console.log(args)
+    console.log(context)
+    console.log(ms)
+    var g = setTimeout(function() {
+      context.apply(context, args)
+    }, ms)
+    return g;
+  }
+};
+var f = obj.g;
+f.defer(2000)(1, 2)
+
+// f.defer(2000)(1, 2); // выведет 3 через 1 секунду.
+// d.defer(2000)(2, 2);
+// f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+
+// function f() {
+//   alert( "привет" );
+// }
+// f
+// Object.prototype.defer(func)
+// f.defer(1000); // выведет "привет" через 1 секунду
+*/
+
+                              // Свои классы на прототипах
+
+// Перепишите в виде класса
+/*
+function CoffeeMachine(power) {
+  this._power = power; 
+  this._waterAmount = 0;
+  this._WATER_HEAT_CAPACITY = 4200;
+
+};
+CoffeeMachine.prototype.WATER_HEAT_CAPACITY = 4200;
+
+CoffeeMachine.prototype._getTimeToBoil = function() {
+  return this._waterAmount * this.WATER_HEAT_CAPACITY * 80 / this._power;
+};
+
+CoffeeMachine.prototype.run = function() {
+  setTimeout(function() {
+      alert( 'Кофе готов!' );
+    }, this._getTimeToBoil());
+};
+
+CoffeeMachine.prototype.setWaterAmount = function(amount) {
+    this._waterAmount = amount;
+};
+
+var coffeeMachine = new CoffeeMachine(10000);
+coffeeMachine.setWaterAmount(50);
+coffeeMachine.run();
+*/
+
+// Хомяки с __proto__
+/*
+function Hamster() {
+  this.food = [];
+};
+Hamster.prototype.food = new Array(); // пустой "живот"
+
+Hamster.prototype.found = function(something) {
+  this.food.push(something);
+};
+// Создаём двух хомяков и кормим первого
+var speedy = new Hamster();
+var lazy = new Hamster();
+
+speedy.found("яблоко");
+speedy.found("орех");
+
+alert( speedy.food.length ); // 2
+alert( lazy.food.length ); // 2 (!??)
+*/
+
+                              // Наследование классов в JavaScript
+
+//Структура наследования полностью:
+// --------- Класс-Родитель ------------
+// Конструктор родителя пишет свойства конкретного объекта
+function Animal(name) {
+  this.name = name;
+  this.speed = 0;
+}
+// Методы хранятся в прототипе
+Animal.prototype.run = function() {
+  alert(this.name + " бежит!")
+}
+// --------- Класс-потомок -----------
+// Конструктор потомка
+function Rabbit(name) {
+  Animal.apply(this, arguments);
+}
+// Унаследовать
+Rabbit.prototype = Object.create(Animal.prototype);
+// Желательно и constructor сохранить
+Rabbit.prototype.constructor = Rabbit;
+// Методы потомка
+Rabbit.prototype.run = function() {
+  // Вызов метода родителя внутри своего
+  Animal.prototype.run.apply(this);
+  alert( this.name + " подпрыгивает!" );
+};
+// Готово, можно создавать объекты
+var rabbit = new Rabbit('Кроль');
+rabbit.run();
+alert( rabbit instanceof Rabbit ); // true
+
+
+// Найдите ошибку в наследовании
+/*
+function Animal(name) {
+  this.name = name;
+}
+Animal.prototype.walk = function() {
+  alert( "ходит " + this.name );
+};
+
+function Rabbit(name) {
+  this.name = name;
+}
+
+Rabbit.prototype = Animal.prototype; // ошибка
+// Rabbit.prototype = Object.create(Animal.prototype);
+Rabbit.prototype.walk = function() {
+  alert( "прыгает! и ходит: " + this.name );
+};
+
+var rabbit = new Rabbit('rabbit');
+rabbit.walk();
+*/
+
+// В чём ошибка в наследовании
+/*
+function Animal(name) {
+  this.name = name;
+
+  this.walk = function() { // переделать для прототипа
+    alert( "ходит " + this.name );
+  };
+};
+
+// Animal.prototype.walk = function() {
+//    alert( "ходит " + this.name );
+// };
+
+function Rabbit(name) {
+  Animal.apply(this, arguments);
+}
+Rabbit.prototype = Object.create(Animal.prototype);
+
+Rabbit.prototype.walk = function() {
+  alert( "прыгает " + this.name );
+};
+
+var rabbit = new Rabbit("Кроль");
+rabbit.walk();
+*/
+
+// Класс "часы"
+// todo
+
+// Класс "расширенные часы"
+// todo
+
+// Меню с таймером для анимации
+// todo
+
+// Что содержит constructor?
+/*
+function Animal() {}
+function Rabbit() {}
+
+Rabbit.prototype = Object.create(Animal.prototype);
+
+var rabbit = new Rabbit();
+console.dir(rabbit)
+alert( rabbit.constructor == Rabbit ); // что выведет?
+// false 
+*/
+
+                        // Проверка класса: "instanceof"
+
+// obj instanceof Constructor:
+// obj.__proto__ с Constructor.prototype
+
+// function Rabbit() {}
+// var rabbit = new Rabbit();
+// // проверяем -- этот объект создан Rabbit?
+// alert( rabbit instanceof Rabbit ); // true, верно
+// // (rabbit.__proto == Rabbit.prototype)
+// console.log(Rabbit.prototype);
+
+// Что выведет instanceof?
+/*
+function Animal() {}
+
+function Rabbit() {}
+Rabbit.prototype = Object.create(Animal.prototype);
+
+var rabbit = new Rabbit();
+
+alert( rabbit instanceof Rabbit ); // true
+alert( rabbit instanceof Animal ); // true
+alert( rabbit instanceof Object ); // true
 */
