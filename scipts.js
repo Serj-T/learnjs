@@ -1774,9 +1774,43 @@ function sum () {
 
                                       // Дата и Время
 
+// Бенчмаркинг
+// var arr = [];
+// for (var i = 0; i < 1000; i++) arr[i] = 0;
+// function walkIn(arr) {
+//   for (var key in arr) arr[key]++;
+// }
+// function walkLength(arr) {
+//   for (var i = 0; i < arr.length; i++) arr[i]++;
+// }
+// function bench(f) {
+//   var date = new Date();
+//   for (var i = 0; i < 1000; i++) f(arr);
+//   return new Date() - date;
+// }
+// // bench для каждого теста запустим много раз, чередуя
+// var timeIn = 0,
+//   timeLength = 0;
+// for (var i = 0; i < 100; i++) {
+//   timeIn += bench(walkIn);
+//   timeLength += bench(walkLength);
+// }
+// alert( 'Время walkIn: ' + timeIn + 'мс' );
+// alert( 'Время walkLength: ' + timeLength + 'мс' );
+
+// Задачи
 // Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут
 // alert(new Date(2012,  1, 20, 3, 12));
+
 // Выводит текущий день недели в коротком формате „пн“, „вт“, … „вс“.
+/*
+function getWeekDay(date) {
+  var days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+  return days[date.getDay()];
+}
+var date = new Date(2014, 0, 3); // 3 января 2014
+alert( getWeekDay(date) ); // 'пт'
+*/
 /*
 var date = new Date(2012,0,3);  // 3 января 2012
 
@@ -1785,8 +1819,7 @@ function getWeekDay(date) {
     weekday: 'short'
   };
   return date.toLocaleString("ru", options);
-}
-
+};
 alert( getWeekDay(date) );      // Должно вывести 'вт'
 alert( date.toLocaleString('ru', {weekday: 'short'}) ) // или так
 */
@@ -1803,15 +1836,24 @@ alert( getWeekDay(date) );
 
 // Возвращает число days дней назад от даты date
 /*
-var date = new Date(2017, 2, 31);
+function getDateAgo(date, day) {
+  var newTime = new Date(date - (3600 * 24 * 1000 * day));
+  return newTime.getDate();
+}
 
+var date = new Date(2015, 0, 2);
+alert( getDateAgo(date, 1) ); // 1, (1 января 2015)
+alert( getDateAgo(date, 2) ); // 31, (31 декабря 2014)
+alert( getDateAgo(date, 365) ); // 2, (2 января 2014)
+*/
+/*
 function getDateAgo(date, days) {
   var dateCopy  = new Date(date);
   dateCopy.setDate(dateCopy.getDate() - days);
   return result = dateCopy.toLocaleString("ru", {day: 'numeric'});
   //return dateCopy.getDate(); или так
 }
-
+var date = new Date(2017, 2, 31);
 getDateAgo(date);
 */
 
@@ -1832,6 +1874,19 @@ function getSecondsToday() {
 };
 getSecondsToday();
 */
+/*
+function getSecondsToday() {
+  var now = new Date();
+
+  // создать объект из текущей даты, без часов-минут-секунд
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  var diff = now - today; // разница в миллисекундах
+  return Math.floor(diff / 1000); // перевести в секунды
+}
+
+alert( getSecondsToday() );
+*/
 
 // Возвращает, сколько секунд осталось до завтра
 /*
@@ -1849,23 +1904,51 @@ getSecondsToTomorrow();
 
 // Выводит дату date в формате дд.мм.гг:
 /*
-var d = new Date(2014, 0, 30);
-
 function formatDate(date) {
   var options = {
     year: '2-digit',
     month: '2-digit',
     day: '2-digit',
   }
-
 return date.toLocaleString("ru", options);
 };
 
+var d = new Date(2014, 0, 30);
 formatDate(d);
 */
 
 // Относительное форматирование даты
-// todo
+/*
+function formatDate(date) {
+  var now = Math.floor((Date.now() - date) / 1000);
+  if (now <= 1) return "только что";
+  if (now <= 60) return now + " сек. назад";
+  if (now <= 3600) return now / 60 + " мин. назад";
+
+  var options = {
+    year: '2-digit',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+  return date.toLocaleString('ru', options);
+
+  // return date.toLocaleString("ru", {
+  //   day: '2-digit',
+  //   month: '2-digit',
+  //   year: '2-digit'
+  // }) + " " + date.toLocaleString("ru", {
+  //   hour: '2-digit',
+  //   minute: '2-digit'
+  // });
+}
+
+alert( formatDate(new Date(new Date - 1)) ); // "только что"
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"
+alert( formatDate(new Date(new Date - 86400 * 1000)) ); // вчерашняя дата в формате "дд.мм.гг чч:мм"
+*/
 
                                     // Замыкание
 
@@ -2078,8 +2161,146 @@ army[2]();
 army[5]();
 */
 
-                                        // This
 
+                        // Некоторые другие возможности
+
+                        // Типы данных: [[Class]], instanceof и утки
+
+// alert( typeof 1 );         // 'number'
+// alert( typeof true );      // 'boolean'
+// alert( typeof "Текст" );   // 'string'
+// alert( typeof undefined ); // 'undefined'
+// alert( typeof null );      // 'object' (ошибка в языке)
+// alert( typeof alert );     // 'function'
+
+// var toString = {}.toString;
+// var arr = [1, 2];
+// alert( toString.call(arr) ); // [object Array]
+// var date = new Date;
+// alert( toString.call(date) ); // [object Date]
+// var user = { name: "Вася" };
+// alert( toString.call(user) ); // [object Object]
+// alert( {}.toString.call(123) ); // [object Number]
+// alert( {}.toString.call("строка") ); // [object String]
+
+// Функция возвращает только сам [[Class]]
+// function getClass(obj) {
+//   return {}.toString.call(obj).slice(8, -1);
+// }
+// alert( getClass(new Date) ); // Date
+// alert( getClass([1, 2, 3]) ); // Array
+
+// Метод isArray 
+// alert( Array.isArray([1,2,3]) ); // true
+// alert( Array.isArray("not array")); // false
+
+// var something = [1, 2, 3];
+// if (something.splice) {
+//   alert( 'Это утка! То есть, массив!' );
+// }
+
+
+// Задачи
+// Полиморфная функция formatDate
+/*
+function formatDate(date) {
+
+  var options = {
+    year: '2-digit',
+    month: '2-digit',
+    day: '2-digit',
+  };
+
+  switch(typeof date) {
+    case 'string':
+    case 'number':
+    return new Date(date).toLocaleString("ru", options);
+  };
+
+  if (date.getFullYear) {
+    return date.toLocaleString("ru", options);
+  };
+  if (Array.isArray(date)) {
+    console.log();
+    return new Date(date.join(':')).toLocaleString("ru", options);
+  };
+};
+*/
+/*
+alert( formatDate('2011-10-02') ); // 02.10.11
+alert( formatDate(1234567890 * 1000) ); // 14.02.09
+alert( formatDate([2014, 0, 1]) ); // 01.01.14
+alert( formatDate(new Date(2014, 0, 1)) ); // 01.01.14
+
+function formatDate(date) {
+    switch ({}.toString.call(date).slice(8, 9)) {
+        case 'A': return f(new Date(date[0], date[1], date[2]))
+        case 'N': return f(new Date(date * 1e3))
+        case 'S': return f(new Date(date))
+        case 'D': return f(date)
+    }
+
+    function f(d) {
+        var s = '2-digit'
+        return d.toLocaleString('ru', {year: s, month: s, day: s})
+    }
+}
+*/
+
+
+                          //Формат JSON, метод toJSON
+// {
+//   name: "Вася",       // ошибка: ключ name без кавычек!
+//   "surname": 'Петров',// ошибка: одинарные кавычки у значения 'Петров'!
+//   "age": 35,           // .. а тут всё в порядке.
+//   "isAdmin": false    // и тут тоже всё ок
+// }
+
+// дата в строке - в формате UTC
+// var str = '{"title":"Конференция","date":"2014-11-30T12:00:00.000Z"}';
+
+// var event = JSON.parse(str, function(key, value) {
+//   if (key == 'date') return new Date(value);
+//   return value;
+// });
+// alert( event.date.getDate() ); // теперь сработает!
+
+// var user = {
+//   name: "Вася",
+//   age: 25,
+//   window: window
+// };
+// alert( JSON.stringify(user, ["name", "age"]) );
+// // {"name":"Вася","age":25}
+
+// Задачи
+// Превратите объект в JSON
+/*
+var leader = {
+  name: "Василий Иванович",
+  age: 35
+};
+var leaderStr = JSON.stringify(leader);
+leader = JSON.parse(leaderStr);
+*/
+
+// Превратите объекты со ссылками в JSON
+// todo
+
+
+                                // Запуск кода из строки: eval
+// "use strict";
+// eval("var a = 5; function f() { }");
+// alert( a ); // ошибка, переменная не определена
+// // функция f тоже не видна снаружи
+
+// Задачи
+// Eval-калькулятор
+// var expr = prompt("Введите выражение?", '2*3+2');
+// alert( eval(expr) );
+
+
+                                        // This
 // Калькулятор
 /*
 var a = +prompt('Введите значение a -', '');
@@ -2143,9 +2364,9 @@ ladder.up(); // выполнение функции == lader или {}
 ladder.up();
 ladder.down();
 ladder.showStep(); // 1
-
 ladder.up().up().down().up().down().showStep(); // 1
 */
+
 // Перебор объекта с помощью Object.keys
 /*
 var user = {
@@ -2155,7 +2376,6 @@ var user = {
 };
 
 var keys = Object.keys(user)
-
 keys.forEach(function(key) {
   console.log(key + ' ' + user[key]);
 });
@@ -4125,33 +4345,33 @@ alert( lazy.food.length ); // 2 (!??)
 //Структура наследования полностью:
 // --------- Класс-Родитель ------------
 // Конструктор родителя пишет свойства конкретного объекта
-function Animal(name) {
-  this.name = name;
-  this.speed = 0;
-}
-// Методы хранятся в прототипе
-Animal.prototype.run = function() {
-  alert(this.name + " бежит!")
-}
-// --------- Класс-потомок -----------
-// Конструктор потомка
-function Rabbit(name) {
-  Animal.apply(this, arguments);
-}
-// Унаследовать
-Rabbit.prototype = Object.create(Animal.prototype);
-// Желательно и constructor сохранить
-Rabbit.prototype.constructor = Rabbit;
-// Методы потомка
-Rabbit.prototype.run = function() {
-  // Вызов метода родителя внутри своего
-  Animal.prototype.run.apply(this);
-  alert( this.name + " подпрыгивает!" );
-};
-// Готово, можно создавать объекты
-var rabbit = new Rabbit('Кроль');
-rabbit.run();
-alert( rabbit instanceof Rabbit ); // true
+// function Animal(name) {
+//   this.name = name;
+//   this.speed = 0;
+// }
+// // Методы хранятся в прототипе
+// Animal.prototype.run = function() {
+//   alert(this.name + " бежит!")
+// }
+// // --------- Класс-потомок -----------
+// // Конструктор потомка
+// function Rabbit(name) {
+//   Animal.apply(this, arguments);
+// }
+// // Унаследовать
+// Rabbit.prototype = Object.create(Animal.prototype);
+// // Желательно и constructor сохранить
+// Rabbit.prototype.constructor = Rabbit;
+// // Методы потомка
+// Rabbit.prototype.run = function() {
+//   // Вызов метода родителя внутри своего
+//   Animal.prototype.run.apply(this);
+//   alert( this.name + " подпрыгивает!" );
+// };
+// // Готово, можно создавать объекты
+// var rabbit = new Rabbit('Кроль');
+// rabbit.run();
+// alert( rabbit instanceof Rabbit ); // true
 
 
 // Найдите ошибку в наследовании
@@ -4251,3 +4471,149 @@ alert( rabbit instanceof Rabbit ); // true
 alert( rabbit instanceof Animal ); // true
 alert( rabbit instanceof Object ); // true
 */
+
+
+                    // Прототипное наследование
+
+// В старом стандарте
+/*
+function Animal() {;
+  this.age = 0;
+
+  setInterval(this._getOlder.bind(this), 1000);
+};
+
+Animal.prototype.constructor = Animal;
+Animal.prototype.canEat = true,
+Animal.prototype._getOlder = function() {
+  this.age++;
+}
+
+function Rabbit(name) {
+  Animal.call(this) // запустили конструктор this будет petya
+  // в данном случае __proto__ не меняется 
+
+  this.name = name; 
+};
+
+Rabbit.prototype = {
+  __proto__: Animal.prototype,
+
+  // правильный старый варинат
+  // Rabbit.prototype = Object.create(Animal.prototype);
+  // Rabbit.prototype.constructor = Rabbit
+
+  canJump: true,
+
+  jump: function() {
+    console.log(`${this.name} is jumping`);
+  },
+
+  // старение для Rabbit c дополнением
+  _getOlder: function() {
+    Animal.prototype._getOlder.call(this);
+    console.log(`${this.name} got ${this.age}`);
+  }
+
+};
+
+var petya = new Rabbit('Petya');
+console.dir(petya);
+*/
+
+
+// В новом стандарте 
+/*
+class Animal {
+  constructor() { // объявление нового метода
+    this.age = 0;
+    this._canEat = true; // придется записывать не прототип
+    // а в конструктор или делать геттер
+    // get canEat() { return true;}
+    // console.log(animal.canEat) без скобочек для вызова
+    setInterval(this._getOlder.bind(this), 1000);
+  }
+  _getOlder() {
+    this.age++;
+  }
+  static createSuperAnimal() { // статический метод
+    let superAnimal = new Animal();
+    superAnimal.getOlder = null; // не стареет
+  }
+};
+
+let superAnimal = createSuperAnimal() // создали
+
+class Rabbit extend Animal { // наследование
+  constructor() {
+    super(); // вызов конструктора ссылка на родителя Animal
+    this.name = name;
+    this.canJump = true;
+  }
+  jump() {
+    console.log(`${this.name} is jumping`);
+  }
+  _getOlder() {
+    // Animal.prototype._getOlder.call(this);
+    super._getOlder(); // super передаёт this текущий объект
+    console.log(`${this.name} got ${this.age}`);
+  }
+};
+
+var petya = new Rabbit('Petya');
+console.dir(petya);
+*/
+
+                // Переменные в новом стандарте
+// let a = 1;
+// const b = 3
+
+// let sum = (a, b) => {
+//   // LE = {
+//   //  пустой!
+//   // }
+//   console.log(this);
+//   return a + b;
+// };
+// var sum = function(a, b) {
+//  // LE = {
+    // this:..., arguments = []
+//  // }
+//   console.log(this, arguments);
+//   return a + b;
+// };
+// sum(1, 2);
+
+
+// Функции-стрелки
+// let user = {
+//   name: 'Ivan',
+//   sayLater() {
+//     // this === user
+//     // arguments === [1, 2, 3]
+
+//     setTimeout( () => {
+//       console.log(this, arguments)
+//     }, 1000); // своего this нет, берет из замыкания
+//   }
+// }
+// user.sayLater(1, 2, 3);
+
+// В старом формате
+// var fullName = 'Ivan Ivanov';
+// var parts = fullName.split(' ');
+// var firstName = parts[0];
+// var lastName = parts[1];
+// console.log(firstName + ' '+ lastName);
+
+// В новом формате
+// var fullName = 'Ivan Ivanov 1 2 3 4';
+// let [firstName, lastName,  ...numbers] = fullName.split(' ');
+// console.log([firstName, lastName,  ...numbers]);
+// console.log(numbers); // создать массив 
+// console.log(...numbers); // вернуть через запятую
+
+// let f = (a, ...args) => {
+//   console.log(a, args);
+// };
+// f(10, 1, 2, 3)
