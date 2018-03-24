@@ -2288,6 +2288,165 @@ leader = JSON.parse(leaderStr);
 // todo
 
 
+                                // setTimeout и setInterval
+
+// // начать повторы с интервалом 2 сек
+// var timerId = setInterval(function() {
+//   alert( "тик" );
+// }, 2000);
+
+// // через 5 сек остановить повторы
+// setTimeout(function() {
+//   clearInterval(timerId);
+//   alert( 'стоп' );
+// }, 5000);
+
+// рекурсивный setTimeout:
+// // вместо:
+// var timerId = setInterval(function() {
+//   alert( "тик" );
+// }, 2000);
+// 
+// var timerId = setTimeout(function tick() {
+//   alert( "тик" );
+//   timerId = setTimeout(tick, 2000);
+// }, 2000);
+
+// Задачи
+// Вывод чисел каждые 100 мс
+/*
+function printNumbersInterval() {
+  var i = 1;
+  var timerId = setInterval(function() {
+
+    console.log(i);
+    i++;
+
+    if (i > 10) {
+      clearTimeout(timerId);
+    };
+  }, 500);
+};
+printNumbersInterval()
+*/
+
+// Вывод чисел каждые 100 мс, через setTimeout
+/*
+function printNumbersInterval() {
+  var i = 1;
+  var timerId = setTimeout(function warpTimer() {
+    console.log(i)
+    i++;
+    if (i <= 10) setTimeout(warpTimer, 1000);
+  }, 1000);
+};
+
+printNumbersInterval();
+*/
+
+// Для подсветки setInterval или setTimeout?
+/*
+// setInterval, с остановкой по окончании работы:
+var timer = setInterval(function() {
+  if (есть еще что подсветить) highlight();
+  else clearInterval(timer);
+}, 10);
+
+// Рекурсивный setTimeout:
+// гарантирует браузеру свободное время между выполнениями highlight
+setTimeout(function go() {
+  highlight();
+  if (есть еще что подсветить) setTimeout(go, 10);
+}, 10);
+*/
+
+// Что выведет setTimeout?
+/*
+setTimeout(function() {
+  alert( i );
+}, 100);
+// выполнится по завершению hardWork сразу же
+var i;
+
+function hardWork() {
+  // время выполнения этого кода >100 мс, сам код неважен
+  for (i = 0; i < 1e8; i++) hardWork[i % 2] = i;
+}
+
+hardWork();
+*/
+
+// Что выведет после setInterval?
+/*
+var timer = setInterval(function() { 
+  i++; // выполнится второй. один раз сразу после выполнения f
+  // без накопления вызовов!
+}, 10);
+
+setTimeout(function() { // выполнится третий после timer
+  clearInterval(timer);
+  alert( i ); // 100000001 +1 от i++ в timer
+}, 50);
+var i;  
+function f() { // тяжелая ф-ция. выполнится первой
+  for (i = 0; i < 1e8; i++) f[i % 2] = i;
+}
+f();
+*/
+
+// Кто быстрее?
+/*
+var runner1 = new Runner();
+var runner2 = new Runner();
+// первый?
+setInterval(function() {
+  runner1.step();
+}, 15);
+// или второй?
+setTimeout(function go() {
+  runner2.step();
+  setTimeout(go, 15);
+}, 15);
+setTimeout(function() {
+  alert( runner1.steps );
+  alert( runner2.steps );
+}, 5000);
+// первый быстрее т.к. отсчет интервала включает время
+// исполнения ф-ции. а в рекурскивной время отсчитывается
+// только после выполнения внутр. ф-ции
+*/
+
+// Функция-задержка
+/*
+function delay(f, ms) {
+
+  return function(x) {
+    var thisSelf = this;
+    var thisArgs = arguments;
+
+    setTimeout(function() {
+      f.apply(thisSelf, thisArgs);
+    }, ms)
+  }
+}
+
+function f(x) {
+  alert( x );
+}
+// delay(f, 1000);
+var f1000 = delay(f, 1000);
+var f1500 = delay(f, 1500);
+
+f1000("тест"); // выведет "тест" через 1000 миллисекунд
+f1500("тест2"); // выведет "тест2" через 1500 миллисекунд
+*/
+
+// Вызов не чаще чем в N миллисекунд
+
+
+
+
+
                                 // Запуск кода из строки: eval
 // "use strict";
 // eval("var a = 5; function f() { }");
