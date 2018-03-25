@@ -2442,12 +2442,145 @@ f1500("тест2"); // выведет "тест2" через 1500 миллисе
 */
 
 // Вызов не чаще чем в N миллисекунд
+// todo
+
+// Тормозилка
+// todo
 
 
+                            // Перехват ошибок, "try..catch"
 
+// try {
+//   alert('Начало блока try');  // (1) <--
+//   lalala; // ошибка, переменная не определена!
+//   alert('Конец блока try');  // (2)
+// } catch(e) {
+//   alert('Ошибка ' + e.name + ":" + e.message + "\n" + e.stack); // (3) <--
+// }
+// alert("Потом код продолжит выполнение...");
 
+// var data = '{ "age": 30 }'; // данные неполны
+// try {
+//   var user = JSON.parse(data); // <-- выполнится без ошибок
+//   if (!user.name) {
+//     throw new SyntaxError("Данные некорректны");
+//   }
+//   alert( user.name );
+// } catch (e) {
+//   alert( "Извините, в данных ошибка" );
+// }
+
+// function readData() {
+//   var data = '{ "name": "Вася", "age": 30 }';
+//   try {
+//     blabla(); // ошибка!
+//   } catch (e) {
+//     if (e.name != 'SyntaxError') {
+//       throw e; // пробрасываем
+//     }
+//   }
+// }
+// try {
+//   readData();
+// } catch (e) {
+//   alert( "Поймал во внешнем catch: " + e ); // ловим
+// }
+
+// Оборачивание исключений
+// function ReadError(message, cause) {
+//   this.message = message;
+//   this.cause = cause;
+//   this.name = 'ReadError';
+//   this.stack = cause.stack;
+// }
+// function readData() {
+//   var data = '{ bad data }';
+//   try {
+//     // ...
+//     JSON.parse(data);
+//     // ...
+//   } catch (e) {
+//     // ...
+//     if (e.name == 'URIError') {
+//       throw new ReadError("Ошибка в URI", e);
+//     } else if (e.name == 'SyntaxError') {
+//       throw new ReadError("Синтаксическая ошибка в данных", e);
+//     } else {
+//       throw e; // пробрасываем
+//     }
+//   }
+// }
+// try {
+//   readData();
+// } catch (e) {
+//   if (e.name == 'ReadError') {
+//     alert( e.message );
+//     alert( e.cause ); // оригинальная ошибка-причина
+//   } else {
+//     throw e;
+//   }
+// }
+
+// Секция finally
+// function sum(n) {
+//   return n ? (n + sum(n - 1)) : 0;
+// }
+// var n = +prompt('Введите n?', 100);
+// var start = new Date();
+// try {
+//   var result = sum(n);
+// } catch (e) {
+//   result = 0;
+// } finally {
+//   var diff = new Date() - start;
+// }
+// alert( result ? result : 'была ошибка' );
+// alert( "Выполнение заняло " + diff );
+
+// <script>
+//   window.onerror = function(message, url, lineNumber) {
+//     alert("Поймана ошибка, выпавшая в глобальную область!\n" +
+//       "Сообщение: " + message + "\n(" + url + ":" + lineNumber + ")");
+//   };
+//   function readData() {
+//     error(); // ой, что-то не так
+//   }
+//   readData();
+// </script>
+
+// Задачи
+// Finally или просто код?
+/*
+try {
+  начать работу
+  работать
+} catch (e) {
+  обработать ошибку
+} finally {
+  финализация: завершить работу
+}
+// разница с finally будет при работе с функцией
+// при return, throw 
+*/
+
+// Eval-калькулятор с ошибками
+/*
+function calculator(calcExp = prompt('expression', '')) {
+  try {
+    var result = eval(calcExp);
+    if(isNaN(result)) throw new Error('Результат неопределен');
+    
+  } catch(e) {
+    alert('Ошибка ' + e.message + ' повторите ввод');
+    return calculator();
+  }
+  return console.log(result)
+}
+calculator()
+*/
 
                                 // Запуск кода из строки: eval
+
 // "use strict";
 // eval("var a = 5; function f() { }");
 // alert( a ); // ошибка, переменная не определена
@@ -4499,6 +4632,7 @@ alert( speedy.food.length ); // 2
 alert( lazy.food.length ); // 2 (!??)
 */
 
+
                               // Наследование классов в JavaScript
 
 //Структура наследования полностью:
@@ -4631,6 +4765,24 @@ alert( rabbit instanceof Animal ); // true
 alert( rabbit instanceof Object ); // true
 */
 
+                  // Свои ошибки, наследование от Error
+
+// function PropertyError(property) {
+//   Error.call(this, property) ;
+//   this.name = "PropertyError";
+
+//   this.property = property;
+//   this.message = "Ошибка в свойстве " + property;
+
+//   if (Error.captureStackTrace) {
+//     Error.captureStackTrace(this, PropertyError);
+//   } else {
+//     this.stack = (new Error()).stack;
+//   }
+
+// }
+
+// PropertyError.prototype = Object.create(Error.prototype);
 
                     // Прототипное наследование
 
@@ -4681,12 +4833,14 @@ console.dir(petya);
 */
 
 
+                  // Современные возможности ES-2015
+
 // В новом стандарте 
 /*
 class Animal {
   constructor() { // объявление нового метода
     this.age = 0;
-    this._canEat = true; // придется записывать не прототип
+    this._canEat = true; // придется записывать не в прототип
     // а в конструктор или делать геттер
     // get canEat() { return true;}
     // console.log(animal.canEat) без скобочек для вызова
@@ -4722,7 +4876,7 @@ class Rabbit extend Animal { // наследование
 var petya = new Rabbit('Petya');
 console.dir(petya);
 */
-
+          
                 // Переменные в новом стандарте
 // let a = 1;
 // const b = 3
@@ -4776,3 +4930,5 @@ console.dir(petya);
 //   console.log(a, args);
 // };
 // f(10, 1, 2, 3)
+
+

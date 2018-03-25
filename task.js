@@ -1,29 +1,29 @@
-'use strict'
+'use strict';
+
+let allModels = {};
+
+function createModel(Model, ...args) {
+  let model = new Model(...args);
+  model._id = Math.random().toString(36).slice(2);
+  allModels[model._id] = model;
+
+  return model;
+}
 
 
 
 
-function debounce(f, ms) {
-
-  
-
-  return function() {
-    var thisSelf = this;
-    var thisArgs = arguments;
-    
-    setTimeout(function() {
-      f.apply(thisSelf, thisArgs);
-    }, ms);
-
+let user = createModel(class User {
+  constructor(name) {
+    this.name = name;
   }
-}
-function fn(x) {
-  console.log(x)
-}
+  sayHi() {
+    alert(this.name);
+  }
+}, "Зуенф");
 
-let f = debounce(fn, 1000);
 
-f(1); // вызов отложен на 1000 мс
-f(2); // предыдущий отложенный вызов игнорируется, текущий (2) откладывается на 1000 мс
-setTimeout( function() { f(3) }, 1100); // через 1100 мс отложим вызов еще на 1000 мс
-setTimeout( function() { f(4) }, 1200); // игнорируем вызов (3)
+
+user.sayHi(); // Вася
+
+alert( allModels[user._id].name ); // Вася
