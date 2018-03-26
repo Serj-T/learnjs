@@ -4932,3 +4932,125 @@ console.dir(petya);
 // f(10, 1, 2, 3)
 
 
+                          // Документ и объекты страницы
+                          // Дерево DOM
+// Задачи
+/*  
+<html>
+<head>
+  <script>
+    alert( document.body ); // null
+  </script>
+</head>
+<body>
+  Привет, мир!
+</body>
+</html>
+*/
+
+                          // Навигация по DOM-элементам
+
+// Методы массива 1
+// var elems = document.documentElement.childNodes;
+// [].forEach.call(elems, function(elem) {
+//   alert( elem ); // HEAD, текст, BODY
+// });                          
+
+// Метод массива 2
+// var elems = document.documentElement.childNodes;
+// elems = Array.prototype.slice.call(elems); // теперь elems - массив
+
+// elems.forEach(function(elem) {
+//   alert( elem.tagName ); // HEAD, текст, BODY
+// });
+
+// Задачи
+// DOM children
+/*
+document.documentElement.children[0]; // или document.head
+document.body.children[1];
+document.body.children[1].children[1];
+*/
+
+// Проверка существования детей
+/*
+if (!elem.childNodes.length) { ... }
+if (!elem.firstChild) { ... }
+if (!elem.lastChild) { ... }
+*/
+
+// Вопрос по навигационным ссылкам
+/*
+elem.lastChild.nextSibling // null
+Верно ли, что elem.children[0].previousSibling // не всегда null может быть текст
+*/
+
+// Выделите ячейки по диагонали
+/*
+var table = document.body.children[0];
+[].forEach.call(table.rows, function(row, index) {
+  row.cells[index].style.backgroundColor = 'red'; // row === table.rows
+});
+*/
+
+                  // Поиск: getElement* и querySelector*
+
+// <div id="content">Выделим этот элемент</div>
+// <script>
+//   var elem = document.getElementById('content');
+//   elem.style.background = 'red';
+//   alert( elem == content ); // true
+//   content.style.background = ""; // один и тот же элемент
+// </script>
+
+// // получить все div-элементы
+// var elements = document.getElementsByTagName('div');
+
+// // получить все элементы документа
+// document.getElementsByTagName('*');
+// // получить всех потомков элемента elem:
+// elem.getElementsByTagName('*');
+// document.getElementsByTagName('input')[0].value = 5;
+
+// var elems = document.getElementsByName('age');
+
+// <div class="article">Статья</div>
+// <div class="long article">Длинная статья</div>
+// <script>
+//   var articles = document.getElementsByClassName('article');
+//   alert( articles.length ); // 2, найдёт оба элемента
+// </script>
+
+// <ul>
+//   <li>Этот</li>
+//   <li>тест</li>
+// </ul>
+// <ul>
+//   <li>полностью</li>
+//   <li>пройден</li>
+// </ul>
+// <script>
+//   var elements = document.querySelectorAll('ul > li:last-child');
+//   for (var i = 0; i < elements.length; i++) {
+//     alert( elements[i].innerHTML ); // "тест", "пройден"
+//   }
+// </script>
+
+// <a href="http://example.com/file.zip">...</a>
+// <a href="http://ya.ru">...</a>
+
+// <script>
+//   var elems = document.body.children;
+//   for (var i = 0; i < elems.length; i++) {
+//     if (elems[i].matches('a[href$="zip"]')) {
+//       alert( "Ссылка на архив: " + elems[i].href );
+//     }
+//   }
+// </script
+
+// getElementById  id  - везде
+// getElementsByName name  - везде
+// getElementsByTagName  тег или '*' ✔ везде
+// getElementsByClassName  классу  ✔ кроме IE8-
+// querySelector CSS-селектор  ✔ везде
+// querySelectorAll  CSS-селектор  ✔ везде
