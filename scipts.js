@@ -5054,3 +5054,57 @@ var table = document.body.children[0];
 // getElementsByClassName  классу  ✔ кроме IE8-
 // querySelector CSS-селектор  ✔ везде
 // querySelectorAll  CSS-селектор  ✔ везде
+
+// Задачи
+// Поиск элементов
+/*
+document.getElementById('age-table').getElementsByTagName('label');
+document.querySelector('#age-table td');
+document.getElementsByName('search-person')[0];
+document.querySelector('form[name="search"]');
+document.querySelector('form[name="search"] input');
+document.getElementsByName("info[0]")[0];
+document.querySelector('form[name="search-person"] [name="info[0]"]');
+*/
+
+// Дерево
+/*
+var elem = document.querySelectorAll('li');
+for (var i = 0; i < elem.length; i++) {
+  var value = elem[i].getElementsByTagName('li')
+  console.log(elem[i].firstChild.data.trim().replace(/\r?\n/g, "")
++ ' ' + value.length);
+};
+*/
+
+// Оптимизация перебора цикла DOM'a загнать length в переменную
+// for (var i = 0, length = elements.length; i < length ; i++) {
+//   var input = elements[i];
+//   alert( input.value + ': ' + input.checked );
+// }
+
+                // Свойства узлов: тип, тег и содержимое
+
+// Задачи
+// Что выведет код? 
+/*
+<!DOCTYPE HTML>
+<html>
+
+<body>
+  <script>
+    alert( document.body.lastChild.nodeType ); // 1
+  </script>
+</body>
+
+</html>
+*/
+
+//Тег в комментарии
+/*
+<script>
+  var body = document.body;
+  body.innerHTML = "<!--" + body.tagName + "-->";
+  alert( body.firstChild.data ); // BODY
+</script>
+*/
