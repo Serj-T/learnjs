@@ -5108,3 +5108,205 @@ for (var i = 0; i < elem.length; i++) {
   alert( body.firstChild.data ); // BODY
 </script>
 */
+  
+        // Внутреннее устройство поисковых методов
+
+// Задачи
+// Длина коллекции после удаления элементов
+/*
+<ul id="menu">
+  <li>Главная страница</li>
+  <li>Форум</li>
+  <li>Магазин</li>
+</ul>
+
+var lis = document.body.getElementsByTagName('li');
+document.body.innerHTML = "";
+alert( lis.length ); // 0
+
+var menu = document.getElementById('menu');
+var lis = menu.getElementsByTagName('li');
+document.body.innerHTML = "";
+alert( lis.length ); // 3 поиск в переменной
+*/
+
+// Сравнение количества элементов
+/*
+var aList1 = document.getElementsByTagName('a'); // 3
+var aList2 = document.querySelectorAll('a');     // 3
+// <a href=#></a>
+aList1 // 4
+aList2 // 3
+*/
+
+// Бенчмаркинг методов поиска в DOM
+// todo
+
+                // Атрибуты и DOM-свойства
+
+// Устанавливает атрибуты                
+// <body>
+//   <div id="elem" about="Elephant"></div>
+//   <script>
+//     alert( elem.getAttribute('About') ); // (1) 'Elephant', атрибут получен
+//     elem.setAttribute('Test', 123); // (2) атрибут Test установлен
+//     alert( document.body.innerHTML ); // (3) в HTML видны все атрибуты!
+//     var attrs = elem.attributes; // (4) можно получить коллекцию атрибутов
+//     for (var i = 0; i < attrs.length; i++) {
+//       alert( attrs[i].name + " = " + attrs[i].value );
+//     }
+//   </script>
+// </body>
+
+// <a id="a" href="#"></a>
+// <script>
+//   a.href = '/';
+//   alert( 'атрибут:' + a.getAttribute('href') ); // '/'
+//   alert( 'свойство:' + a.href );  // полный URL
+// </script>
+
+// <input id="input" type="checkbox" checked>
+// <script>
+//   // работа с checked через атрибут
+//   alert( input.getAttribute('checked') ); // пустая строка
+//   input.removeAttribute('checked'); // снять галочку
+//   // работа с checked через свойство
+//   alert( input.checked ); // false <-- может быть только true/false
+//   input.checked = true; // поставить галочку (при этом атрибут в элементе не появится)
+// </script>
+
+// <img id="img" href="test">
+// <a id="link" alt="test"></a>
+
+// <script>
+//   alert( img.href ); // undefined
+//   alert( link.alt ); // undefined
+// </script>
+
+// <div id="elem" data-about="Elephant" data-user-location="street">
+//   По улице прошёлся слон. Весьма красив и толст был он.
+// </div>
+// <script>
+//   alert( elem.getAttribute('data-about') ); // Elephant
+//   alert( elem.getAttribute('data-user-location') ); // street
+//   alert( elem.dataset.about ); // Elephant
+//   alert( elem.dataset.userLocation ); // street
+//   data-user-location трансформировалось в dataset.userLocation
+// </script>
+
+// Полифилл для атрибута hidden
+// <style>
+//   [hidden] { display: none }
+// </style>
+
+// <script>
+//   if (document.documentElement.hidden === undefined) {
+//     Object.defineProperty(Element.prototype, "hidden", {
+//       set: function(value) {
+//         this.setAttribute('hidden', value);
+//       },
+//       get: function() {
+//         return this.getAttribute('hidden');
+//       }
+//     });
+//   }
+// </script>
+// <div>Текст</div>
+// <div hidden>С атрибутом hidden</div>
+// <div id="last">Со свойством hidden</div>
+
+// <script>
+//   last.hidden = true;
+// </script>
+
+// Задачи
+// Получите пользовательский атрибут
+/*
+<body>
+  <div id="widget" data-widget-name="menu">Выберите жанр</div>
+  <script>
+    var div = document.getElementById('widget');
+    var divAttr = div.getAttribute('data-widget-name');
+    var divAttr2 = div.dataset.widgetName;
+    console.log(divAttr);
+  </script>
+</body>
+*/
+
+// Поставьте класс ссылкам
+/*
+var a = document.querySelectorAll('a');
+
+for (var i = 0; i < a.length; i++) {
+  var attr = a[i].getAttribute('href');
+  var prop = a[i].href;
+
+  if (!attr) continue;
+  if (attr.indexOf('://') == -1) continue;
+  if (attr.indexOf('http://internal.com') === 0) continue;
+
+  a[i].classList.add('external');
+
+  console.log('attr ' + a[i].getAttribute('href'));
+  console.log('prop ' + a[i].href);
+}
+*/
+
+        // Методы contains и compareDocumentPosition 
+// var result = parent.contains(child);
+
+        // Добавление и удаление узлов
+
+// Создание и вставка элемента
+// var div = document.createElement('div');
+// div.className = "alert alert-success";
+// div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+// document.body.appendChild(div);
+
+// Глубокое клонирование
+// // создать копию узла
+// var div2 = div.cloneNode(true);
+// // копию можно подправить
+// div2.querySelector('strong').innerHTML = 'Супер!';
+// // вставим её после текущего сообщения
+// div.parentNode.insertBefore(div2, div.nextSibling);
+
+// Поменять местами
+// var first = document.body.children[0];
+// var last = document.body.children[1];
+
+// Удалить сообщение
+// setTimeout(function() {
+//   div.parentNode.removeChild(div);
+// }, 1000);
+// или так
+// setTimeout(function() {
+//   div.remove();
+// }, 2000);
+
+// Текстовые узлы для вставки текста
+// var div = document.createElement('div');
+// div.className = "alert alert-success";
+// document.body.appendChild(div);
+// var text = prompt("Введите текст для сообщения", "Жили были <a> и <b>!");
+// // вставится именно как текст, без HTML-обработки
+// div.appendChild(document.createTextNode(text));
+
+// Задачи
+// createTextNode vs innerHTML
+/*
+elem.appendChild(document.createTextNode(text)); // вставит HTML
+elem.innerHTML = text; // интерпретирует теги как текст
+*/
+
+// Удаление элементов полифил
+/*
+Element.prototype.remove = function remove() {
+  if (this.parentNode) {
+    this.parentNode.removeChild(this);
+  }
+}
+var elem = document.body.children[0];
+
+elem.remove(); // <-- вызов должен удалить элемент
+*/
