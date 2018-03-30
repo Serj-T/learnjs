@@ -5307,6 +5307,85 @@ Element.prototype.remove = function remove() {
   }
 }
 var elem = document.body.children[0];
-
-elem.remove(); // <-- вызов должен удалить элемент
+elem.remove();
 */
+
+// Функцию insertAfter(elem, refElem)
+/*
+var elem = document.createElement('div');
+elem.innerHTML = '<b>Новый элемент</b>';
+
+function insertAfter(elem, refElem) {
+  var nextNode = refElem.nextSibling;
+  var parent = refElem.parentNode;
+  var insert = parent.insertBefore(elem, nextNode)
+  return parent.insertBefore(elem, nextNode);
+}
+
+var body = document.body;
+
+// вставить elem после первого элемента
+insertAfter(elem, body.firstChild); // <--- должно работать
+
+// вставить elem за последним элементом
+insertAfter(elem, body.lastChild); // <--- должно работать
+*/
+
+// Функция removeChildren
+/*
+function removeChildren(elem) {
+  elem.innerHTML = '';
+}
+removeChildren(table); // очищает таблицу
+removeChildren(ol); // очищает список
+*/
+// С поддержкой IE8 + второй вариант
+/*
+function removeChildren(elem) {
+  try {
+    elem.innerHTML = '';
+  } catch (e) {
+    while (elem.firstChild) {
+      elem.removeChild(elem.firstChild);
+    }
+  }
+}
+*/
+
+// Создать список (ul создасться автоматом)
+/*
+function addLi() {
+  var textLi = prompt('Add text to list', '');
+
+  if (textLi !== null) {
+    var li = document.createElement('li');
+    li.textContent = textLi;
+    document.appendChild(li);
+    return addLi();
+  };
+};
+addLi();
+*/
+
+// Создайте дерево из объекта
+// todo
+
+
+
+var data = {
+  "Рыбы": {
+    "Форель": {},
+    "Щука": {}
+  },
+
+  "Деревья": {
+    "Хвойные": {
+      "Лиственница": {},
+      "Ель": {}
+    },
+    "Цветковые": {
+      "Берёза": {},
+      "Тополь": {}
+    }
+  }
+};
