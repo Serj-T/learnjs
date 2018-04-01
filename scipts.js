@@ -5464,3 +5464,79 @@ function getDay(date) {
 
 createCalendar("calendar", 2012, 9)
 */
+
+                    // Полифиллы
+
+// Полифилл для matches
+/*
+for (var i = 0; i < list.children.length; i++) {
+  if (list.children[i].matches('li[class="second"]')) {
+    console.log(list.children[i].className + ' gotcha!')
+  }
+}
+// Обернуть в сразу выполняющуюся ф-цию
+if (document.documentElement.matches === undefined) {
+  Element.prototype.matches = Element.prototype.matchesSelector ||
+  Element.prototype.webkitMatchesSelector ||
+  Element.prototype.mozMatchesSelector ||
+  Element.prototype.msMatchesSelector;
+}
+*/
+
+// Полифилл для closest
+/*
+(function() {
+  if (!Element.prototype.closest) {
+
+    Element.prototype.closest = function(css) {
+      var node = this;
+
+      while (node) {
+        if (node.matches(css)) return node;
+        else node = node.parentElement;
+      }
+      return null;
+    };
+  }
+
+})();
+*/
+
+// Полифилл для textContent
+/*
+(function() {
+  if (document.documentElement.textContent === undefined) {
+
+    Object.defineProperty(HTMLElement.prototype, "textContent", {
+      get: function() {
+        return this.innerText;
+      },
+      set: function(str) {
+        this.innerText = str;
+      }
+    });
+  }
+})();
+*/
+
+// Аттрибуты и DOM свойства
+
+// <style>
+//   .order[order-state="new"] {color: green;}
+//   .order[order-state="pending"] {color: blue;}
+//   .order[order-state="canceled"] {color: red;}
+// </style>
+
+// <div class="order" order-state="new">
+//   Новый заказ.
+// </div>
+// <div class="order" order-state="pending">
+//   Ожидающий заказ.
+// </div>
+// <div class="order" order-state="canceled">
+//   Заказ отменён.
+// </div>
+
+// <script>
+//   div.setAttribute('order-state', 'canceled');
+// </script>
