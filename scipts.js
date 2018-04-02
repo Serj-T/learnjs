@@ -5322,6 +5322,10 @@ function insertAfter(elem, refElem) {
   return parent.insertBefore(elem, nextNode);
 }
 
+function insertAfter(elem, refElem) {
+  return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+}
+
 var body = document.body;
 
 // вставить elem после первого элемента
@@ -5387,6 +5391,8 @@ var data = {
     }
   }
 };
+
+// Первый вариант
 function createTree(container, obj) {
   container.appendChild(createTreeDom(obj));
 }
@@ -5402,7 +5408,7 @@ function createTreeDom(obj) {
     var li = document.createElement('li');
     li.innerHTML = key; // 1 Рыбы 2 Форель
 
-    var childrenUl = createTreeDom(obj[key]); // обж Фищ, {}, 
+    var childrenUl = createTreeDom(obj[key]);
     if (childrenUl) li.appendChild(childrenUl);
 
     ul.appendChild(li);
@@ -5418,6 +5424,21 @@ function isObjectEmpty(obj) {
   return true;
 };
 
+// Второй вариант
+function createTree(container, obj) {
+  container.innerHTML = createTreeText(obj);
+}
+
+function createTreeText(obj) { // отдельная рекурсивная функция
+  var li = '';
+  for (var key in obj) {
+    li += '<li>' + key + createTreeText(obj[key]) + '</li>';
+  }
+  if (li) {
+    var ul = '<ul>' + li + '</ul>'
+  }
+  return ul || '';
+};
 var container = document.getElementById('container');
 createTree(container, data); // создаёт
 */
@@ -5465,6 +5486,16 @@ function getDay(date) {
 createCalendar("calendar", 2012, 9)
 */
 
+// Дерево
+/*
+var lis = document.getElementsByTagName('li');
+
+for (i = 0; i < lis.length; i++) {
+  var childCount = lis[i].getElementsByTagName('li').length;
+  if (!childCount) continue;
+  lis[i].firstChild.data += ' [' + childCount + ']';
+}
+*/
                     // Полифиллы
 
 // Полифилл для matches
@@ -5517,6 +5548,27 @@ if (document.documentElement.matches === undefined) {
     });
   }
 })();
+*/
+
+// Часы на js
+/*
+function update() {
+  var clock = document.getElementById('clock');
+
+  var date = new Date(); // (*)
+
+  var hours = date.getHours();
+  if (hours < 10) hours = '0' + hours;
+  clock.children[0].innerHTML = hours;
+
+  var minutes = date.getMinutes();
+  if (minutes < 10) minutes = '0' + minutes;
+  clock.children[1].innerHTML = minutes;
+
+  var seconds = date.getSeconds();
+  if (seconds < 10) seconds = '0' + seconds;
+  clock.children[2].innerHTML = seconds;
+}
 */
 
 // Аттрибуты и DOM свойства
