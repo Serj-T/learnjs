@@ -1,36 +1,34 @@
 'use strict';
 
-let tr = document.querySelectorAll('tr')
-var newArr = [];
+    // function showNotification(options) {
 
-for (var i = 0; i < tr.length; i++) {
-  var str = [];
-  
-  for (var j = 0; j < tr[i].children.length; j++) {
-    var cells = tr[i].children[j].innerHTML;
-    str.push(cells);
-  }
-  newArr.push(str);
-};
+    //   var notification = document.createElement('div');
+    //   notification.className = "notification";
+    //   console.log(options.cssText)
+    //   if (options.cssText) {
+    //     notification.style.cssText = options.cssText;
+    //   }
+    //   notification.style.top = (options.top || 0) + 'px'; // can use cssText
+    //   notification.style.right = (options.right || 0) + 'px'; // can use cssText
+    //   if (options.className) {
+    //     notification.classList.add(options.className);
+    //   }
 
+    //   notification.innerHTML = options.html;
+    //   document.body.appendChild(notification); // over cover
 
-newArr.sort(function (a, b) {
-  console.log();
-  return a[1] - b[1];
-});
+    //   setTimeout(function() {
+    //     document.body.removeChild(notification);
+    //   }, 1500);
+    // }
 
-// console.log(newArr);
-
-
-for (var i = 0; i < newArr.length; i++) {
-  let tr = document.createElement('tr');
-  let td = document.createElement('td');
-  
-  for (var j = 0; j < newArr[i].length; j++) { 
-    td.innerHTML = newArr[i][j];
-    console.log(td);
-    tr.appendChild(td)
-  };
-  
-  table.appendChild(tr)
-}
+    // // тест работоспособности
+    // var i = 0;
+    // setInterval(function() {
+    //   showNotification({
+    //     top: 10,
+    //     right: 10,
+    //     html: 'Привет ' + ++i,
+    //     className: "welcome"
+    //   });
+    // }, 2000);

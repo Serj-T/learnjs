@@ -5603,3 +5603,153 @@ ul.insertAdjacentHTML("beforeEnd", "<li>3</li><li>4</li><li>5</li>");
 */
 
 // Отсортировать таблицу
+/*
+let tr = document.querySelectorAll('tr')
+var newArr = [];
+
+for (var i = 0; i < tr.length; i++) {
+  var str = [];
+  
+  for (var j = 0; j < tr[i].children.length; j++) {
+    var cells = tr[i].children[j].innerHTML;
+    str.push(cells);
+  }
+  newArr.push(str);
+};
+
+
+newArr.sort(function (a, b) {
+  console.log();
+  return a[1] - b[1];
+});
+
+// console.log(newArr);
+
+
+for (var i = 0; i < newArr.length; i++) {
+  let tr = document.createElement('tr');
+  let td = document.createElement('td');
+  
+  for (var j = 0; j < newArr[i].length; j++) { 
+    td.innerHTML = newArr[i][j];
+    console.log(td);
+    tr.appendChild(td)
+  };
+  
+  table.appendChild(tr)
+}
+*/
+
+
+                        // Стили, getComputedStyle
+
+// var div = document.body.children[0];
+// div.style.cssText="color: red !important; \
+//   background-color: yellow; \
+//   width: 100px; \
+//   text-align: center; \
+//   blabla: 5; \
+// ";
+
+// var computedStyle = getComputedStyle(document.body);
+//   alert( computedStyle.marginTop );
+//   alert( computedStyle.color );
+
+// Задачи
+// Скругленая кнопка со стилями из JavaScript
+/*
+var a = document.createElement('a');
+a.className = 'button';
+a.appendChild(document.createTextNode('Нажми меня'));
+a.href = '/';
+
+var s = a.style
+s.MozBorderRadius = s.WebkitBorderRadius = s.borderRadius = '8px';
+s.border = '2px groove green';
+s.display = 'block';
+s.height = '30px';
+s.lineHeight = '30px';
+s.width = '100px';
+s.textDecoration = 'none';
+s.textAlign = 'center';
+s.color = 'red';
+s.fontWeight = 'bold';
+
+var div = document.body.children[0];
+div.appendChild(a);
+*/
+
+// Создать уведомление
+/**
+ * Показывает уведомление, пропадающее через 1.5 сек
+ *
+ * @param options.top {number} вертикальный отступ, в px
+ * @param options.right {number} правый отступ, в px
+ * @param options.cssText {string} строка стиля
+ * @param options.className {string} CSS-класс
+ * @param options.html {string} HTML-текст для показа
+ */
+
+// function showNotification(options) {
+
+//   var notification = document.createElement('div');
+//   notification.className = "notification";
+//   console.log(options.cssText)
+//   if (options.cssText) {
+//     notification.style.cssText = options.cssText;
+//   }
+//   notification.style.top = (options.top || 0) + 'px'; // can use cssText
+//   notification.style.right = (options.right || 0) + 'px'; // can use cssText
+//   if (options.className) {
+//     notification.classList.add(options.className);
+//   }
+
+//   notification.innerHTML = options.html;
+//   document.body.appendChild(notification); // over cover
+
+//   setTimeout(function() {
+//     document.body.removeChild(notification);
+//   }, 1500);
+// }
+
+// // тест работоспособности
+// var i = 0;
+// setInterval(function() {
+//   showNotification({
+//     top: 10,
+//     right: 10,
+//     html: 'Привет ' + ++i,
+//     className: "welcome"
+//   });
+// }, 2000);
+
+
+// Второе решение 
+/*
+var options = {
+  top: 10,
+  right: 10,
+  html: "Привет",
+  className: "welcome"
+};
+
+var div = document.createElement('div');
+div.className = 'notification';
+
+for (var key in options) {  
+  console.log(div.className);
+  if (div[key]) {
+    div[key] = div[key] + ' ' + options[key];
+    continue;
+  }
+  
+  if (typeof options[key] === 'number') {
+    div.style[key] = options[key] + 'px';
+    continue;
+  }
+  div.style[key] = options[key];
+};
+console.dir(div.style);
+document.body.appendChild(div);
+*/
+
