@@ -5753,3 +5753,129 @@ console.dir(div.style);
 document.body.appendChild(div);
 */
 
+
+                          // Размеры и прокрутка элементов
+
+// Cпособ для проверки, виден ли элемент
+// function isHidden(elem) {
+//   return !elem.offsetWidth && !elem.offsetHeight;
+// }
+
+// На всю высоту убрать прокрутку
+// element.style.height = element.scrollHeight + 'px';  
+
+// Задачи
+
+// Найти размер прокрутки снизу
+// var srollDown = elem.scrollHeight - elem.scrollTop - elem.clientHeight
+
+// Узнать ширину полосы прокрутки
+/*
+var div = document.createElement('div');
+div.style.overflowY = 'scroll';
+div.style.width = '50px';
+div.style.height = '50px';
+div.style.visibility = 'hidden';
+document.body.appendChild(div);
+
+var scrollWidth = div.offsetWidth - div.clientWidth;
+document.body.removeChild(div);
+console.log(scrollWidth);
+*/
+
+// Подменить div на другой с таким же размером
+/*
+var cloneDiv = document.createElement('div');
+cloneDiv.style.height = div.offsetHeight + 'px';
+*/
+
+// Поместите мяч в центр поля
+/*
+var ball = document.getElementById('ball');
+ball.style.width = '30px';
+ball.style.left = (field.offsetWidth - ball.offsetWidth) / 2 - field.clientLeft  + 'px';
+ball.style.top = (field.offsetHeight - ball.offsetHeight) / 2 - field.clientTop  + 'px';
+*/
+/*
+var ball = document.getElementById('ball');
+ball.style.top = ball.style.right = ball.style.bottom = ball.style.left = 0;
+ball.style.margin = 'auto';
+*/
+
+// Расширить элемент
+// elem.style.width = 'auto';
+/*
+var bodyClientWidth = document.body.clientWidth;
+var style = getComputedStyle(elem);
+var bodyInnerWidth = bodyClientWidth - parseInt(style.paddingLeft) - parseInt(style.paddingRight);
+elem.style.width = bodyInnerWidth + 'px';
+*/
+
+
+                      // Размеры и прокрутка страницы
+// Определить размер страницы с учетом прокрутки                     
+/*
+var scrollHeight = Math.max(
+  document.body.scrollHeight, document.documentElement.scrollHeight,
+  document.body.offsetHeight, document.documentElement.offsetHeight,
+  document.body.clientHeight, document.documentElement.clientHeight
+);
+alert( 'Высота с учетом прокрутки: ' + scrollHeight );
+*/
+
+// Полифилл для pageYOffset в IE8
+/*
+Object.defineProperty(window, 'pageYOffset', {
+  get: function() {
+    return document.documentElement.scrollTop;
+  }
+});
+
+// использование полифилла
+alert( window.pageYOffset );
+*/
+
+
+                            // Координаты в окне
+// Выделяет и выводит тег у элемента, который сейчас в середине окна:
+// var centerX = document.documentElement.clientWidth / 2;
+// var centerY = document.documentElement.clientHeight / 2;
+// var elem = document.elementFromPoint(centerX, centerY);
+// elem.style.background = "red";
+// alert( elem.tagName );
+// elem.style.background = "";
+
+/*
+var elem = document.getElementById("coords-show-mark");
+function createMessageUnder(elem, text) {
+  // получить координаты
+  var coords = elem.getBoundingClientRect();
+  // создать элемент для сообщения
+  var message = document.createElement('div');
+  // стиль лучше задавать классом
+  message.style.cssText = "position:fixed; color: red";
+  // к координатам обязательно добавляем "px"!
+  message.style.left = coords.left + "px";
+  message.style.top = coords.bottom + "px";
+  message.innerHTML = text;
+  return message;
+}
+// Использование добавить на 5 сек в документ
+var message = createMessageUnder(elem, 'Привет, мир!');
+document.body.appendChild(message);
+setTimeout(function() {
+  document.body.removeChild(message);
+}, 5000);
+*/
+
+// Найдите координаты точки в документе
+
+// var x = elem.getBoundingClientRect()
+
+// console.log(x.left + ' ' + x.top)
+// console.log((x.left + x.width) + ' ' + (x.top + x.height)
+// console.log((x.left + field.clientLeft) + ' ' + (x.top + field.clientTop))
+// 
+
+
+
