@@ -5877,9 +5877,9 @@ setTimeout(function() {
 // console.log((x.left + field.clientLeft) + ' ' + (x.top + field.clientTop))
 // 
 
-
-
- function positionAt(anchor, position, elem) {
+// 
+/*
+function positionAt(anchor, position, elem) {
   var anchorCoords = anchor.getBoundingClientRect();
   switch (position) {
     case "top":
@@ -5909,3 +5909,80 @@ var blockquote = document.querySelector('blockquote');
 showNote(blockquote, "top", "заметка сверху");
 showNote(blockquote, "right", "заметка справа");
 showNote(blockquote, "bottom", "заметка снизу");
+*/
+
+
+                              // Координаты в документе
+
+// Получение координат
+// function getCoords(elem) {
+//   var box = elem.getBoundingClientRect();
+//   return {
+//     top: box.top + pageYOffset,
+//     left: box.left + pageXOffset
+//   };
+// }
+
+// Задачи
+// Область видимости для документа
+/*
+function getDocumentScroll() {
+  var scrollHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+  );
+  return {
+    top: pageYOffset,
+    bottom: pageYOffset + document.documentElement.clientHeight,
+    height: scrollHeight
+  };
+}
+getDocumentScroll()
+*/
+
+
+                                  // Основы работы с событиями
+                                  // Введение в браузерные события
+
+// Задачи
+
+// Спрятать при клике text
+// btn.addEventListener('click', function() {
+//   text.hidden = true;
+// })
+
+// btn.addEventListener('click', function() {
+//   btn.hidden = true;
+// })
+// или
+// onclick="this.style.display='none'"
+
+// Раскрывающееся меню
+/*
+btn.addEventListener('click', list)
+function list() {
+  var list = document.querySelector('.list');
+  if (list.hidden === true ) {
+    list.hidden = false;
+  } else {
+    list.hidden = true;
+  };
+*/
+
+// Спрятать сообщение 
+/*
+var pane = document.querySelectorAll('.pane');
+var btn = document.querySelector('.remove-button');
+
+for (let i = 0; i < pane.length; i++) {
+  let newBtn = btn.cloneNode(true);
+  newBtn.style.position = 'absolute';
+  newBtn.style.right = '10px';
+  newBtn.style.top = '10px';
+  pane[i].appendChild(newBtn);
+  newBtn.addEventListener('click', function() {
+    newBtn.parentNode.hidden = true;
+  });
+};
+*/

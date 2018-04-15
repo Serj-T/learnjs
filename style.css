@@ -26,3 +26,20 @@ blockquote:before {
   margin-right: .25em;
   vertical-align: -.4em;
 }
+
+.pane {
+  position: relative;
+  background: #edf5e1;
+  padding: 10px 20px 10px;
+  border-top: solid 2px #c4df9b;
+}
+
+.remove-button {
+  font-size: 110%;
+  color: darkred;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+}
