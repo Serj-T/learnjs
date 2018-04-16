@@ -82,6 +82,27 @@
     </div>
   </div>
 
+
+<input type="button" id="button" value="Нажми меня">
+<input type="text" id="text" size="60">
+
+<script>
+  button.onclick = function() {
+    text.value += ' ->в onclick ';
+
+    setTimeout(function() {
+      text.focus(); // сработает после onclick
+    }, 0);
+
+    text.value += ' из onclick-> ';
+  };
+
+  text.onfocus = function() {
+    text.value += ' !focus! ';
+  };
+</script>
+
+
   <script src = "scipts.js"></script> 
   <script src="task.js"></script> 
 </body>
